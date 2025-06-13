@@ -1,1 +1,50 @@
+FLASK (quick, lightweight, WSGI framework in python) (vs. Django (it's huge like MERN))
+*prerequisites: HTML, CSS, building basic console level applications (hangman) with python
 
+*postrequisites: (check if you can do these at the end)
+Pages and Features:
+--------------------
+1. Home Page:
+   - Displays summaries of all blog posts, ordered from newest to oldest.
+
+2. Post Detail Page:
+   - Accessed via: /post/<post_id>
+   - Shows full content of a blog post along with all comments.
+   - Logged-in users can submit new comments.
+
+3. New Post Page:
+   - Only accessible to logged-in users.
+   - Allows creation of new blog posts using a form.
+
+4. Registration Page:
+   - Enables new users to register for an account.
+
+5. Login Page:
+   - Allows registered users to log in and manage their session.
+
+6. Logout:
+   - Ends the user session and redirects to the homepage.
+
+Key Concepts and Tools Used:
+-----------------------------
+✔ Flask App structure with blueprints and routes  
+✔ Static file serving for CSS styling  
+✔ Base HTML layout with dynamic navigation using Jinja2  
+✔ Template inheritance and loops for rendering post lists  
+✔ Flask-SQLAlchemy for database modeling and interaction  
+✔ Models for User, Post, and Comment  
+✔ Flask-WTF for form rendering and validation  
+✔ Flask-Login for user authentication and login protection  
+✔ Password hashing for secure credentials  
+✔ Dynamic routing for individual post detail pages  
+✔ Flash messaging for feedback (e.g., login success/failure, form errors)  
+✔ Basic 404 error handling  
+
+
+Werkzeug: WSGI toolkit
+Jinja2: templating engine used to render dynamic HTML
+
+*request response cycle
+*routing
+*templates
+*forms
