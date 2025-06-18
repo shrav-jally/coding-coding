@@ -1,0 +1,25 @@
+https://www.codechef.com/START191D/problems/DIVIDE3
+
+N=int(input())
+imbalance=0
+
+if N%3==0:
+    imbalance=0
+elif N%3==1 or N%3==2:
+    imbalance=1
+    
+print(imbalance)
+
+https://www.codechef.com/START191D/problems/NEARSQ
+
+import math
+arr=[]
+for _ in range(int(input())):
+    n = int(input())
+    arr.append((math.floor(math.sqrt(n)))**2)
+    
+for i in arr:
+    print(i)
+
+
+
