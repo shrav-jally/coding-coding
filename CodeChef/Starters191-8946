@@ -1,4 +1,4 @@
-https://www.codechef.com/START191D/problems/DIVIDE3
+--https://www.codechef.com/START191D/problems/DIVIDE3--
 
 N=int(input())
 imbalance=0
@@ -10,7 +10,7 @@ elif N%3==1 or N%3==2:
     
 print(imbalance)
 
-https://www.codechef.com/START191D/problems/NEARSQ
+--https://www.codechef.com/START191D/problems/NEARSQ--
 
 import math
 arr=[]
@@ -21,7 +21,7 @@ for _ in range(int(input())):
 for i in arr:
     print(i)
 
-https://www.codechef.com/START191D/problems/ADDGCD
+--https://www.codechef.com/START191D/problems/ADDGCD--
 
 import math
 
@@ -32,7 +32,7 @@ for _ in range(t):
     x, y = map(int, input().split())
 
     if x > y:
-        x, y = y, x  # ensure x ≤ y
+        x, y = y, x  
 
     g = math.gcd(x, y)
     if g != 1:
@@ -43,4 +43,19 @@ for _ in range(t):
         arr.append(2)
 
 print("\n".join(map(str, arr)))
+
+--https://www.codechef.com/problems/PERMGE2--
+
+for _ in range(int(input())):
+    x,y,z = map(int, input().split())
+    
+    x -= z
+    if (x > 0):
+        if x ==1 and y == 0:
+            print("Yes")
+        else:
+            print("No")
+    else:
+        print("Yes")
+
 
