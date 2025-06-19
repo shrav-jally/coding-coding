@@ -1,0 +1,25 @@
+https://codeforces.com/problemset/problem/1747/B
+
+t = int(input())
+all_results = []
+
+for _ in range(t):
+    n = int(input())
+    swaps = []
+
+    if n == 1:
+        swaps.append((1, 2))
+    else:
+        m = (n + 1) // 2
+        left, right = 2, 3 * n
+        for _ in range(m):
+            swaps.append((left, right))
+            left += 3
+            right -= 3
+
+    all_results.append(swaps)
+
+for swaps in all_results:
+    print(len(swaps))
+    for i, j in swaps:
+        print(i, j)
