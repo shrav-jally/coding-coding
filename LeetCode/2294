@@ -1,0 +1,12 @@
+https://leetcode.com/problems/partition-array-such-that-maximum-difference-is-k/description/?envType=daily-question&envId=2025-06-19
+
+class Solution:
+    def partitionArray(self, nums, k):
+        nums.sort()
+        part=0
+        start=0
+        for end in range(len(nums)):
+            if nums[end] - nums[start]>k:
+                part+=1
+                start=end
+        return part+1
