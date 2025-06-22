@@ -1,0 +1,28 @@
+https://leetcode.com/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150
+
+from collections import Counter
+class Solution:
+    def majorityElement(self, nums):
+        freqdict = Counter(nums)
+        return freqdict.most_common(1)[0][0]
+
+
+----------------------------------------------
+
+boyer-moore voting algorithm
+
+class Solution:
+    def majorityElement(self, nums: list[int]) -> int:
+        candidate = None
+        count = 0
+        
+        for num in nums:
+            if count == 0:
+                candidate = num
+                count = 1
+            elif num == candidate:
+                count += 1
+            else:
+                count -= 1
+        
+        return candidate
