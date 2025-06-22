@@ -1,1 +1,22 @@
+--https://www.codechef.com/START191D/problems/ADDGCD--
 
+import math
+
+t = int(input())
+arr = []
+
+for _ in range(t):
+    x, y = map(int, input().split())
+
+    if x > y:
+        x, y = y, x  
+
+    g = math.gcd(x, y)
+    if g != 1:
+        arr.append(0)
+    elif math.gcd(x + 1, y) > 1 or math.gcd(x, y + 1) > 1:
+        arr.append(1)
+    else:
+        arr.append(2)
+
+print("\n".join(map(str, arr)))
