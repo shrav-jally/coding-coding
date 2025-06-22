@@ -1,0 +1,10 @@
+https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/?envType=daily-question&envId=2025-06-22
+
+class Solution:
+    def divideString(self, s, k, fill):
+        n=len(s)
+        res=[s[i:i+k] for i in range(0, n, k)]
+        if len(res[-1])<k:
+            filling = k-len(res[-1])
+            res[-1]+=fill*filling
+        return res
