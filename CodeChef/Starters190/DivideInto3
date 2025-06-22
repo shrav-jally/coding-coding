@@ -1,1 +1,11 @@
+--https://www.codechef.com/START191D/problems/DIVIDE3--
 
+N=int(input())
+imbalance=0
+
+if N%3==0:
+    imbalance=0
+elif N%3==1 or N%3==2:
+    imbalance=1
+    
+print(imbalance)
