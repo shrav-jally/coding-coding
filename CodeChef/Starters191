@@ -1,4 +1,5 @@
 --https://www.codechef.com/START191D/problems/DIVIDE3--
+Divide into 3
 
 N=int(input())
 imbalance=0
@@ -11,6 +12,7 @@ elif N%3==1 or N%3==2:
 print(imbalance)
 
 --https://www.codechef.com/START191D/problems/NEARSQ--
+Nearest Square
 
 import math
 arr=[]
@@ -22,6 +24,7 @@ for i in arr:
     print(i)
 
 --https://www.codechef.com/START191D/problems/ADDGCD--
+Add to get GCD
 
 import math
 
@@ -45,6 +48,7 @@ for _ in range(t):
 print("\n".join(map(str, arr)))
 
 --https://www.codechef.com/problems/PERMGE2--
+Permuted Greater Than 2
 
 for _ in range(int(input())):
     x,y,z = map(int, input().split())
@@ -57,5 +61,17 @@ for _ in range(int(input())):
             print("No")
     else:
         print("Yes")
+
+--https://www.codechef.com/problems/SUB12?tab=statement--
+Add 1 or 2
+
+--https://www.codechef.com/problems/GRIDPATHEZ--
+Grid Path (Easy)
+
+--https://www.codechef.com/problems/COLARR7--
+Coloured Array
+
+--https://www.codechef.com/problems/GRIDPATHHD--
+Grid Path (Hard)
 
 
