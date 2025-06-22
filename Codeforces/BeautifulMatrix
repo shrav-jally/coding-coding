@@ -1,0 +1,17 @@
+https://codeforces.com/problemset/problem/263/A
+
+import math 
+
+matrix=[]
+for _ in range(5):
+    inp=list(map(int, input().split()))
+    matrix.append(inp)
+
+for i, row in enumerate(matrix):
+    if 1 in row:
+        j = row.index(1)
+        break
+    
+moves = abs(i-2) + abs(j-2)
+
+print(moves)
