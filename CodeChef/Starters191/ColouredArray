@@ -1,1 +1,79 @@
 https://www.codechef.com/problems/COLARR7
+
+import sys, collections, sys
+sys.setrecursionlimit(10**6)
+data = list(map(int, sys.stdin.buffer.read().split()))
+t = data[0]
+p = 1
+res = []
+for _ in range(t):
+    n = data[p]
+    p += 1
+    arr = data[p:p + 2 * n]
+    p += 2 * n
+    fixed = [False] * (n + 1)
+    mixed = []
+    gain2 = 0
+    for i in range(0, 2 * n, 2):
+        x, y = arr[i], arr[i + 1]
+        if x == y:
+            if not fixed[x]:
+                fixed[x] = True
+                gain2 += 2
+        else:
+            mixed.append((x, y))
+    val_id = {}
+    adj = []
+    for x, y in mixed:
+        e = []
+        if not fixed[x]:
+            if x not in val_id:
+                val_id[x] = len(val_id)
+            e.append(val_id[x])
+        if y != x and not fixed[y]:
+            if y not in val_id:
+                val_id[y] = len(val_id)
+            e.append(val_id[y])
+        adj.append(e)
+    m = len(adj)
+    r = len(val_id)
+    pair_u = [-1] * m
+    pair_v = [-1] * r
+    dist = [0] * m
+    INF = 10 ** 9
+    def bfs():
+        q = collections.deque()
+        for u in range(m):
+            if pair_u[u] == -1:
+                dist[u] = 0
+                q.append(u)
+            else:
+                dist[u] = INF
+        reachable = False
+        while q:
+            u = q.popleft()
+            for v in adj[u]:
+                w = pair_v[v]
+                if w != -1 and dist[w] == INF:
+                    dist[w] = dist[u] + 1
+                    q.append(w)
+                elif w == -1:
+                    reachable = True
+        return reachable
+    def dfs(u):
+        for v in adj[u]:
+            w = pair_v[v]
+            if w == -1 or (dist[w] == dist[u] + 1 and dfs(w)):
+                pair_u[u] = v
+                pair_v[v] = u
+                return True
+        dist[u] = INF
+        return False
+    match = 0
+    while bfs():
+        for u in range(m):
+            if pair_u[u] == -1 and dfs(u):
+                match += 1
+    ans = 2 * n - gain2 - match
+    res.append(str(ans))
+sys.stdout.write("\n".join(res))
