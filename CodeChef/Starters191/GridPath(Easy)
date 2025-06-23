@@ -1,1 +1,77 @@
 https://www.codechef.com/problems/GRIDPATHEZ
+
+import sys
+
+import os
+if not bool(os.environ.get("DVTEST", False)):
+    input = sys.stdin.readline
+# sys.setrecursionlimit(100_000)
+# import array as arr
+
+from collections import Counter
+
+
+def solve():
+    n, q = map(int, input().split())
+    a = input().strip()
+    b = input().strip()
+
+    a_ones = a.count("1")
+    b_ones = b.count("1")
+
+    if a_ones + b_ones < n + 1:
+        print(-1)
+        return
+    a = list(a)
+    b = list(b)
+
+    # min cost to get 1-string of length X
+    a_pos = [-1] * (n + 1)
+    cost = 0
+    cnt_ones = 0
+    cnt_zeros = 0
+    for i in range(n):
+        if a[i] == '1':
+            cnt_ones += 1
+            a_pos[cnt_ones] = cost
+            a_pos[cnt_ones] -= (cnt_zeros * (cnt_zeros - 1)) // 2
+        else:
+            cnt_zeros += 1
+        cost += cnt_zeros
+
+    b_pos = [-1] * (n + 1)
+    cost = 0
+    cnt_ones = 0
+    cnt_zeros = 0
+    for i in range(n):
+        idx = n - i - 1
+        if b[idx] == '1':
+            cnt_ones += 1
+            b_pos[cnt_ones] = cost
+            b_pos[cnt_ones] -= (cnt_zeros * (cnt_zeros - 1)) // 2
+        else:
+            cnt_zeros += 1
+        cost += cnt_zeros
+
+    ans = 10**18
+    for i in range(n):
+        x1 = a_pos[i + 1]
+        x2 = b_pos[n - i]
+        if x1 >= 0 and x2 >= 0:
+            ans = min(ans, x1 + x2)
+
+    print(ans)
+    for i in range(q):
+        # update cell
+        pass
+        print(ans)
+
+
+def main():
+    tests_cnt = int(input())
+    for i in range(tests_cnt):
+        solve()
+
+
+if __name__ == '__main__':
+    main()
