@@ -1,1 +1,55 @@
 https://www.codechef.com/problems/SUB12?tab=statement
+
+import sys
+
+import os
+if not bool(os.environ.get("DVTEST", False)):
+    input = sys.stdin.readline
+# sys.setrecursionlimit(100_000)
+# import array as arr
+
+
+def is_valid(xmax, a, b, n):
+    # > 0 means we have excess operations
+    balance2 = 0
+    for i in range(n):
+        remaining = xmax - a[i]
+        take1 = min(b[i], remaining)
+        remaining -= take1
+        left_ops = b[i] - take1
+        if remaining > 0:
+            balance2 -= remaining // 2
+        else:
+            balance2 += left_ops
+    return balance2 <= 0
+
+
+def solve():
+    n = int(input())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    ans = 10**10
+    mx = max(a)
+    c = [(mx - a[i]) for i in range(n)]
+    total_events = sum(b)
+
+    l = mx
+    r = mx + total_events * 2
+
+    while l < r:
+        x = (l + r) // 2
+        if is_valid(x, a, b, n):
+            r = x
+        else:
+            l = x + 1
+    return l
+
+
+def main():
+    tests_cnt = int(input())
+    for i in range(tests_cnt):
+        print(solve())
+
+
+if __name__ == '__main__':
+    main()
