@@ -1,0 +1,5 @@
+https://www.codechef.com/problems/MAXSLAM
+
+import math
+X=int(input())
+print(math.ceil((25-X)/4))
