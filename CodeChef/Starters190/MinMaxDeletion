@@ -1,2 +1,35 @@
 https://www.codechef.com/problems/MNMXDEL
 
+import sys
+input = sys.stdin.readline
+
+def solve_case():
+    N, Q = map(int, input().split())
+    A = list(map(int, input().split()))
+    total = sum(min(A[i], A[i+1]) for i in range(N-1))
+    results = []
+    for _ in range(Q):
+        p, x = map(int, input().split())
+        p -= 1
+        if p > 0:
+            total -= min(A[p-1], A[p])
+        if p < N-1:
+            total -= min(A[p], A[p+1])
+        A[p] = x
+        if p > 0:
+            total += min(A[p-1], A[p])
+        if p < N-1:
+            total += min(A[p], A[p+1])
+        results.append(total)
+    return results
+
+def main():
+    T = int(input())
+    all_outputs = []
+    for _ in range(T):
+        case_results = solve_case()
+        all_outputs.extend(case_results)
+    print('\n'.join(map(str, all_outputs)))
+
+if __name__ == "__main__":
+    main()
