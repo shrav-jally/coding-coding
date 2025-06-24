@@ -1,0 +1,13 @@
+https://leetcode.com/problems/find-all-k-distant-indices-in-an-array/?envType=daily-question&envId=2025-06-24
+
+class Solution:
+    def findKDistantIndices(self, nums, key, k):
+        n = len(nums)
+        ans = []
+        j = 0
+        for i in range(n):
+            while j < n and (nums[j] != key or j < i - k):
+                j += 1
+            if j < n and abs(i - j) <= k:
+                ans.append(i)
+        return ans
