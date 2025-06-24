@@ -1,0 +1,19 @@
+https://www.codechef.com/problems/LTALL
+
+t = int(input())
+for _ in range(t):
+    n=int(input())
+    s=input().strip()
+    lit=[False] * n
+
+    for i in range(n):
+        if s[i]=='1':
+            lit[i]=True
+            if i>0 and not lit[i-1]:
+                lit[i-1]=True
+            elif i<n-1 and not lit[i+1]:
+                lit[i+1]=True
+    if False in lit:
+        print("No")
+    else:
+        print("Yes")
