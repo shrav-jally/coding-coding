@@ -1,0 +1,15 @@
+https://www.codechef.com/problems/RED23
+
+T=int(input())
+res=[]
+for _ in range(T):
+    X=int(input())
+    while X > 3:
+        X=X-3
+    while X >= 2 and X%2==0:
+        X/=2
+    res.append(X)
+
+for _ in res:
+    print(int(_))
+        
