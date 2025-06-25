@@ -1,0 +1,5 @@
+https://www.codechef.com/START192D/problems/SHOM
+
+import math
+L, R = map(int, input().split())
+print(abs(L-R))
