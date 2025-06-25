@@ -1,0 +1,9 @@
+https://codeforces.com/problemset/problem/2106/B
+
+t = int(input())
+for _ in range(t):
+    n, x = map(int, input().split())
+    p = list(range(x)) + list(range(x+1, n))
+    if x < n:
+        p.append(x)
+    print(*p)
