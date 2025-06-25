@@ -1,0 +1,21 @@
+https://www.codechef.com/START192D/problems/NODDSM
+
+from collections import Counter
+import math
+
+def odd(a,n):
+    frq = Counter(a)
+    c1 = frq[1]
+    c2 = frq[2]
+    if (c1==0) or (c2==0):
+        return 0
+    if c1%2==1:
+        return c2
+    ones_to_two = math.ceil(c1/2)
+    two_to_ones = c2
+    return min(ones_to_two,two_to_ones)
+
+for _ in range(int(input())):
+    n = int(input())
+    a = list(map(int,input().split()))
+    print(odd(a,n))
