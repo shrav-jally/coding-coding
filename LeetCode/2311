@@ -1,0 +1,19 @@
+https://leetcode.com/problems/longest-binary-subsequence-less-than-or-equal-to-k/description/?envType=daily-question&envId=2025-06-26
+
+class Solution:
+    def longestSubsequence(self, s: str, k: int) -> int:
+        current_sum = 0
+        subsequence_length = 0
+        n = len(s)
+
+        for i in range(n - 1, -1, -1):  # Traverse from the right (least significant bit)
+            if s[i] == '0':
+                subsequence_length += 1  # Always safe to include '0'
+            else:
+                position_value = 1 << (n - 1 - i)  # Bit value at this position
+                if current_sum + position_value <= k:
+                    current_sum += position_value
+                    subsequence_length += 1
+                # else: skip this '1'
+
+        return subsequence_length
