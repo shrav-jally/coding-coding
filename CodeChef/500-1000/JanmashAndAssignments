@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/JASSIGNMENTS
+
+arr=[]
+for _ in range(int(input())):
+    X=int(input())
+    arr.append('yes' if (10-X) >=3 else 'no')
+    
+print(*arr, sep='\n')
