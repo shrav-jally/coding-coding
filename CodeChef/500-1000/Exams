@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/EXAMCHEF
+
+arr=[]
+for _ in range(int(input())):
+    X, Y, Z = map(int, input().split())
+    arr.append('yes' if Z > ((X*Y)/2) else 'no')
+    
+print(*arr, sep='\n')
