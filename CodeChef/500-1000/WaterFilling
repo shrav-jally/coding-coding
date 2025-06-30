@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/WATERFILLING
+
+from collections import Counter
+arr=[]
+for _ in range(int(input())):
+    B = list(map(int, input().split()))
+    freq=Counter(B)
+    arr.append('Water filling time' if freq.get(0, 0) >= 2 else 'Not now')
+
+print(*arr, sep='\n')
