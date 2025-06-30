@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/AVGPROBLEM
+
+arr=[]
+for _ in range(int(input())):
+    A, B, C = map(int, input().split())
+    arr.append('yes' if ((A+B)/2) > C else 'no')
+
+print(*arr, sep='\n')
