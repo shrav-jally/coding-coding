@@ -1,0 +1,26 @@
+https://www.codechef.com/practice/course/1-star-difficulty-problems/DIFF1200/problems/EZSPEAK
+
+arr = []
+vow = ['a', 'e', 'i', 'o', 'u']
+
+for _ in range(int(input())):
+    N = int(input())
+    word = input().lower()
+    
+    R = 0  
+    flag = True  
+    
+    for ch in word:
+        if ch not in vow:
+            R += 1
+            if R >= 5:
+                arr.append('NO')
+                flag = False
+                break
+        else:
+            R = 0  # reset counter if vowel found
+
+    if flag:
+        arr.append('YES')
+
+print(*arr, sep='\n')
