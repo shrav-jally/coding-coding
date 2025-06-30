@@ -13,7 +13,7 @@ for _ in range(int(input())):
     for ch in word:
         if ch not in vow:
             R += 1
-            if R >= 5:
+            if R >= 4:
                 arr.append('NO')
                 flag = False
                 break
