@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/DETSCORE
+
+arr=[]
+for _ in range(int(input())):
+    X, N = map(int, input().split())
+    arr.append(int((X/10)*N))
+    
+print(*arr, sep='\n')
