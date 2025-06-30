@@ -1,0 +1,9 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/SUBSCRIBE_
+
+import math
+arr=[]
+for _ in range(int(input())):
+    N, X=map(int, input().split())
+    arr.append(math.ceil(N/6)*X)
+    
+print(*arr, sep='\n')
