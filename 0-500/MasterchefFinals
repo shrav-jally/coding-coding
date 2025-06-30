@@ -1,0 +1,7 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/TOP10
+
+arr=[]
+for _ in range(int(input())):
+    arr.append('yes' if int(input()) <= 10 else 'no')
+
+print(*arr, sep='\n')
