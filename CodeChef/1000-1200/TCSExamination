@@ -1,0 +1,24 @@
+https://www.codechef.com/practice/course/1-star-difficulty-problems/DIFF1200/problems/EXAMTIME
+
+arr=[]
+for _ in range(int(input())):
+    dsa, toc, dm = map(int, input().split())
+    dsa1, toc1, dm1 = map(int, input().split())
+    if (dsa+toc+dm) > (dsa1 + toc1 + dm1):
+        arr.append('Dragon')
+    elif (dsa+toc+dm) < (dsa1 + toc1 + dm1):
+        arr.append('Sloth')
+    elif (dsa+toc+dm) == (dsa1 + toc1 + dm1):
+        if dsa > dsa1:
+            arr.append('Dragon')
+        elif dsa < dsa1:
+            arr.append('Sloth')
+        elif dsa == dsa1:
+            if toc < toc1:
+                arr.append('Sloth')
+            elif toc > toc1:
+                arr.append('Dragon')
+            elif toc == toc1:
+                arr.append('Tie')
+
+print(*arr, sep='\n')
