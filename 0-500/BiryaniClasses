@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/BIRYANI
+
+arr=[]
+for _ in range(int(input())):
+    X, Y= map(int, input().split())
+    arr.append(X*Y)
+    
+print(*arr, sep='\n')
