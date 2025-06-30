@@ -1,0 +1,16 @@
+https://www.codechef.com/practice/course/1-star-difficulty-problems/DIFF1200/problems/ATM2
+
+arr=[]
+for _ in range(int(input())):
+    mini=''
+    N, K = map(int, input().split())
+    A=list(map(int, input().split()))
+    for i in A:
+        if i <= K:
+            K-=i
+            mini+='1'
+        else:
+            mini+='0'
+            
+    arr.append(mini)
+print(*arr, sep='\n')
