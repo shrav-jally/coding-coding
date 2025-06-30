@@ -1,0 +1,15 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/SALESEASON
+
+arr=[]
+for _ in range(int(input())):
+    X=int(input())
+    if X <= 100:
+        arr.append(X)
+    elif 100 < X <= 1000:
+        arr.append(X-25)
+    elif 1000 < X <= 5000:
+        arr.append(X-100)
+    else:
+        arr.append(X-500)
+
+print(*arr, sep='\n')
