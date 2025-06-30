@@ -1,0 +1,7 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/LUDO
+
+arr=[]
+for _ in range(int(input())):
+    arr.append('yes' if int(input())==6 else 'no')
+    
+print(*arr, sep='\n')
