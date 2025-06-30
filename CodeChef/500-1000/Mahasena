@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/AMR15A
+
+N=int(input())
+arr=list(map(int, input().split()))
+even=0
+for _ in arr:
+    if _%2==0:
+        even+=1
+
+print('READY FOR BATTLE' if even > len(arr)//2 else 'NOT READY')
