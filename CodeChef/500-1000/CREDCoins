@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/CREDCOINS
+
+arr=[]
+for _ in range(int(input())):
+    X, Y = map(int, input().split())
+    arr.append(int((X*Y)/100))
+
+print(*arr, sep='\n')
