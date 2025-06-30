@@ -1,0 +1,4 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/PRACLIST
+
+X, Y = map(int, input().split())
+print(X-Y)
