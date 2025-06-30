@@ -1,0 +1,3 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/CWC23QUALIF
+
+print('yes' if int(input()) >= 12 else 'no')
