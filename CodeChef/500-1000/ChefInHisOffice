@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/OFFICE
+
+arr=[]
+for _ in range(int(input())):
+    X, Y= map(int, input().split())
+    arr.append( (X*4)+Y)
+    
+print(*arr, sep='\n')
