@@ -1,0 +1,21 @@
+https://codeforces.com/problemset/problem/96/A
+
+s = input()
+flag = False
+O = 0
+Z = 0
+for i in s:
+    if i == '1':
+        O += 1
+        Z = 0
+        if O == 7:
+            flag = True
+            break
+    else:
+        Z += 1
+        O = 0
+        if Z == 7:
+            flag = True
+            break
+
+print('YES' if flag else 'NO')
