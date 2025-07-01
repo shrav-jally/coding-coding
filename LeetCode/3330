@@ -1,0 +1,16 @@
+https://leetcode.com/problems/find-the-original-typed-string-i/description/?envType=daily-question&envId=2025-07-01
+
+class Solution:
+    def possibleStringCount(self, word: str) -> int:
+        s = list(word)
+        arr = []
+        i = 1
+
+        while i < len(s):
+            if s[i] == s[i - 1]:
+                s.pop(i)
+                arr.append("".join(s))
+            else:
+                i += 1
+
+        return len(arr)+1
