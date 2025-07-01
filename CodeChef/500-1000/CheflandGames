@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/logical-problems/DIFF800/problems/CHEFGAMES
+
+from collections import Counter
+arr=[]
+for _ in range(int(input())):
+    q = map(int, input().split())
+    freq=Counter(q)
+    arr.append('IN' if freq.get(0, 0) == 4 else 'OUT')
+    
+print(*arr, sep='\n')
