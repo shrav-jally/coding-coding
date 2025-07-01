@@ -1,0 +1,24 @@
+https://codeforces.com/problemset/problem/318/A
+
+#below code takes too much time
+n, k = map(int, input().split())
+odd=[]
+even=[]
+for i in range(1, n+1):
+    if i%2==0:
+        even.append(i)
+    else:
+        odd.append(i)
+
+lst=odd+even
+print(lst[k-1])
+
+#remodelled 
+n, k = map(int, input().split())
+odd_count = (n + 1) // 2
+
+if k <= odd_count:
+    print(2 * k - 1)
+else:
+    k -= odd_count
+    print(2 * k)
