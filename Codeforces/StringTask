@@ -1,0 +1,11 @@
+https://codeforces.com/problemset/problem/118/A
+
+s = input().lower()  
+vowels = {'a', 'e', 'i', 'o', 'u', 'y'}
+result = ''
+
+for ch in s:
+    if ch not in vowels:
+        result += '.' + ch
+
+print(result)
