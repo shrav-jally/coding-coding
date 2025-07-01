@@ -1,0 +1,15 @@
+https://codeforces.com/problemset/problem/160/A
+
+n=int(input())
+c=list(map(int, input().split()))
+c.sort(reverse=True)
+su=c[0]
+count=1
+for i in range(len(c)):
+    if su <= sum(c[i+1:]):
+        su+=c[i+1]
+        count+=1
+    else:
+        break
+
+print(count)
