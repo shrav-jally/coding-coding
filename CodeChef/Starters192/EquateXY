@@ -1,0 +1,28 @@
+https://www.codechef.com/problems/EQXY?tab=statement
+
+for i in range(int(input())):
+    X,Y,Z,C=map(int,input().split())
+    ans=2*C
+    if X==Y:
+        print(0)
+    elif X%Y!=0 and Y%X!=0:
+        print(2*C)
+    else:
+        if Y%X==0:
+            a=Y//X
+            b=int(a**1/2)+1
+            for i in range(1,b+1):
+                if a%i==0:
+                    y=a//i
+                    ans=min(ans,(C+abs((i*X)-Z)))
+                    ans=min(ans,(C+abs((y*X)-Z)))
+        else:
+            a=X//Y
+            b=int(a**1/2)+1
+            for i in range(1,b+1):
+                if a%i==0:
+                    y=a//i
+                    ans=min(ans,(C+abs((i*Y)-Z)))
+                    ans=min(ans,(C+abs((y*Y)-Z)))
+        print(ans)
+                
