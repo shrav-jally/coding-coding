@@ -1,0 +1,4 @@
+https://www.codechef.com/START193D/problems/RECSQ
+
+A, B, C = map(int, input().split())
+print('Yes' if (A*B) == C*C else 'No')
