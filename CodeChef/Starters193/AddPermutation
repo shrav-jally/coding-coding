@@ -1,0 +1,19 @@
+https://www.codechef.com/START193D/problems/ADDPERM
+
+import sys
+
+def solve():
+    data = sys.stdin.read().split()
+    it = iter(data)
+    T = int(next(it))
+    out = []
+    for _ in range(T):
+        N = int(next(it))
+        K = int(next(it))
+        # Build P = [1,2,...,K-1, N, N-1,...,K]
+        perm = list(range(1, K)) + list(range(N, K-1, -1))
+        out.append(" ".join(map(str, perm)))
+    print("\n".join(out))
+
+if __name__ == "__main__":
+    solve()
