@@ -1,0 +1,16 @@
+https://www.codechef.com/START193D/problems/ODDEVENDIV
+
+arr=[]
+for _ in range(int(input())):
+    A,B = list(map(int,input().split()))
+    if A > 0 :
+        if B == 0:
+            arr.append("YES")
+        elif B % A == 0:
+            arr.append("YES")
+        else:
+            arr.append("NO")
+    else:
+        arr.append("NO")
+        
+print(*arr, sep='\n')
