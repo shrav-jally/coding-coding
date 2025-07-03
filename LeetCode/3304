@@ -1,0 +1,11 @@
+https://leetcode.com/problems/find-the-k-th-character-in-string-game-i/?envType=daily-question&envId=2025-07-03
+
+class Solution:
+    def kthCharacter(self, k: int) -> str:
+        word = "a"
+        while len(word) < k:
+            next_part = ''.join(
+                chr(((ord(c) - ord('a') + 1) % 26) + ord('a')) for c in word
+            )
+            word += next_part
+        return word[k - 1]
