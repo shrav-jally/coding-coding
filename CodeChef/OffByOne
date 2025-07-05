@@ -1,0 +1,14 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/OFFBY1?tab=statement
+
+def GOD_IS_WITH_US():
+    a, b = map(int, input().split())
+    c = str(a+b)
+    print(c+'1')
+
+# Written, Compiled and Tested by Reegan Anto.J
+# From Adhi College of Engineering and Technology
+
+T = 1
+#T = int(input())
+for _ in range(T):
+    GOD_IS_WITH_US()
