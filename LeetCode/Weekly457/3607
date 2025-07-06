@@ -1,0 +1,62 @@
+https://leetcode.com/problems/power-grid-maintenance/description/
+
+from collections import defaultdict
+import heapq
+import sys
+sys.setrecursionlimit(1 << 25)
+
+class UF:
+    def __init__(self, n):
+        self.p = list(range(n + 1))
+    def f(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.f(self.p[x])
+        return self.p[x]
+    def u(self, a, b):
+        ra, rb = self.f(a), self.f(b)
+        if ra != rb:
+            self.p[ra] = rb
+
+class Solution:
+    def processQueries(self, c, conns, q):
+        uf = UF(c)
+        for a, b in conns:
+            uf.u(a, b)
+
+        root = [uf.f(i) for i in range(c + 1)]
+        comp = defaultdict(list)
+        for i in range(1, c + 1):
+            comp[root[i]].append(i)
+
+        online_heap = {}
+        online_set = {}
+        for r, nodes in comp.items():
+            h = nodes[:]
+            heapq.heapify(h)
+            online_heap[r] = h
+            online_set[r] = set(nodes)
+
+        pos = [0] * (c + 1)
+        for i in range(1, c + 1):
+            pos[i] = root[i]
+
+        ans = []
+
+        for t, x in q:
+            r = pos[x]
+            if t == 1:
+                if x in online_set[r]:
+                    ans.append(x)
+                else:
+                    h = online_heap[r]
+                    s = online_set[r]
+                    while h and h[0] not in s:
+                        heapq.heappop(h)
+                    if h:
+                        ans.append(h[0])
+                    else:
+                        ans.append(-1)
+            else:
+                online_set[r].discard(x)
+
+        return ans
