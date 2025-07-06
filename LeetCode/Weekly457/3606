@@ -1,0 +1,22 @@
+https://leetcode.com/problems/coupon-code-validator/description/
+
+import re
+
+class Solution:
+    def validateCoupons(self, code, businessLine, isActive):
+        valid_categories = ["electronics", "grocery", "pharmacy", "restaurant"]
+        category_order = {cat: i for i, cat in enumerate(valid_categories)}
+        valid_coupons = []
+
+        for i in range(len(code)):
+            if (
+                code[i] and
+                re.fullmatch(r'[A-Za-z0-9_]+', code[i]) and
+                businessLine[i] in valid_categories and
+                isActive[i]
+            ):
+                valid_coupons.append((category_order[businessLine[i]], businessLine[i], code[i]))
+
+        valid_coupons.sort(key=lambda x: (x[0], x[2]))
+
+        return [coupon[2] for coupon in valid_coupons]
