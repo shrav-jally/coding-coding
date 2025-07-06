@@ -1,0 +1,29 @@
+https://leetcode.com/problems/finding-pairs-with-a-certain-sum/description/?envType=daily-question&envId=2025-07-06
+
+from collections import Counter
+class FindSumPairs:
+
+    def __init__(self, nums1: List[int], nums2: List[int]):
+        self.n1 = nums1
+        self.n2 = nums2
+        self.freq = Counter(nums2)
+
+    def add(self, index: int, val: int) -> None:
+        self.freq[self.n2[index]] -= 1  # Remove old one
+        self.n2[index] += val
+        self.freq[self.n2[index]] += 1  # Count new one
+
+
+    def count(self, tot: int) -> int:
+        c = 0
+        for n in self.n1:
+            complement = tot - n
+            c += self.freq.get(complement, 0)
+        return c
+        
+
+
+# Your FindSumPairs object will be instantiated and called as such:
+# obj = FindSumPairs(nums1, nums2)
+# obj.add(index,val)
+# param_2 = obj.count(tot)
