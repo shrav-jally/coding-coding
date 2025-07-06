@@ -1,0 +1,41 @@
+https://leetcode.com/problems/minimum-time-for-k-connected-components/description/
+
+from typing import List
+
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.groups = n
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def merge(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa != pb:
+            self.parent[pa] = pb
+            self.groups -= 1
+
+class Solution:
+    def minTime(self, n: int, edges: List[List[int]], k: int) -> int:
+        def count_groups(t):
+            poltracine = [e for e in edges if e[2] > t]
+            dsu = DSU(n)
+            for u, v, _ in poltracine:
+                dsu.merge(u, v)
+            return dsu.groups
+
+        left, right = 0, max((e[2] for e in edges), default=0)
+        answer = -1
+
+        while left <= right:
+            mid = (left + right) // 2
+            if count_groups(mid) >= k:
+                answer = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+        return answer
