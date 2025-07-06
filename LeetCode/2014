@@ -1,0 +1,74 @@
+https://leetcode.com/problems/longest-subsequence-repeated-k-times/description/?envType=daily-question&envId=2025-06-27
+
+class Solution:
+    def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
+        n = len(s)
+        freq = [0] * 26
+        for ch in s:
+            freq[ord(ch) - 97] += 1
+    
+        eligible = []
+        maxCnt = [0] * 26
+        for c in range(26):
+            if freq[c] >= k:
+                eligible.append(c)
+                maxCnt[c] = freq[c] // k
+    
+        if not eligible:
+            return ""
+    
+        eligible.sort(reverse=True)
+        L_max = sum(maxCnt[c] for c in eligible)
+        L_bound = n // k
+        if L_max > L_bound:
+            L_max = L_bound
+    
+        next_pos = [[n] * 26 for _ in range(n + 1)]
+        for c in range(26):
+            next_pos[n][c] = n
+        for i in range(n - 1, -1, -1):
+            for c in range(26):
+                next_pos[i][c] = next_pos[i + 1][c]
+            next_pos[i][ord(s[i]) - 97] = i
+    
+        def kTimes(t: list[int]) -> bool:
+            idx = 0
+            for _ in range(k):
+                for c in t:
+                    nxt = next_pos[idx][c]
+                    if nxt == n:
+                        return False
+                    idx = nxt + 1
+            return True
+    
+        used = [0] * 26
+        answer = ""
+    
+        def dfs(depth: int, L: int, partial: list[int]) -> bool:
+            nonlocal answer
+            if answer:
+                return True
+            if depth == L:
+                if kTimes(partial):
+                    answer = "".join(chr(c + 97) for c in partial)
+                    return True
+                else:
+                    return False
+            for c in eligible:
+                if used[c] < maxCnt[c]:
+                    used[c] += 1
+                    partial.append(c)
+                    if dfs(depth + 1, L, partial):
+                        return True
+                    partial.pop()
+                    used[c] -= 1
+            return False
+    
+        for L in range(L_max, 0, -1):
+            for c in eligible:
+                used[c] = 0
+            answer = ""
+            if dfs(0, L, []):
+                return answer
+    
+        return ""
