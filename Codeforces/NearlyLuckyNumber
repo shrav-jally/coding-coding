@@ -1,0 +1,12 @@
+https://codeforces.com/problemset/problem/110/A
+
+def is_lucky(num):
+    return all(d in '47' for d in str(num))
+
+def is_nearly_lucky(n):
+    count = sum(1 for digit in str(n) if digit in '47')
+    return "YES" if is_lucky(count) else "NO"
+
+# Input
+n = input().strip()
+print(is_nearly_lucky(n))
