@@ -1,0 +1,6 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/DONDRIVE
+
+t=int(input())
+for i in range(t):
+    n, x=map(int, input().split())
+    print(abs(n-x))
