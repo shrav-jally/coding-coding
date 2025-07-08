@@ -1,0 +1,9 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/IPLTRSH?tab=statement
+
+n=int(input())
+for i in range (n):
+   a, m=map(int,input(). split(" "))
+   if a>m:
+       print(abs(a-m))
+   else:
+        print(0)
