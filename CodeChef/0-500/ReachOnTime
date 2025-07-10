@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/TIMELY
+
+# cook your dish here
+t=int(input())
+for _ in range(t):
+    n=int(input())
+    if(n>=30):
+        print("YES")
+    else:
+        print("NO")
