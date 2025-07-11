@@ -1,0 +1,7 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/PUZHUNT
+
+N = int(input())
+if 6 <= N <= 8:
+    print("Yes")
+else:
+    print("No")
