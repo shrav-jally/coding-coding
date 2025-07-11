@@ -1,0 +1,12 @@
+https://codeforces.com/problemset/problem/271/A
+
+def is_beautiful(year):
+    return len(set(str(year))) == 4
+
+y = int(input())
+
+while True:
+    y += 1
+    if is_beautiful(y):
+        print(y)
+        break
