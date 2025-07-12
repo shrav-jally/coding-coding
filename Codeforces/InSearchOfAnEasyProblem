@@ -1,0 +1,9 @@
+https://codeforces.com/problemset/problem/1030/A
+
+n = int(input())  # number of people
+opinions = list(map(int, input().split()))  # list of 0s and 1s
+
+if 1 in opinions:
+    print("HARD")
+else:
+    print("EASY")
