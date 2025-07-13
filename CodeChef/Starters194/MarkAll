@@ -1,0 +1,41 @@
+https://www.codechef.com/START194D/problems/MARKALL
+
+import sys
+input = sys.stdin.read
+
+data = input().split()
+index = 0
+T = int(data[index])
+index += 1
+
+arr = []
+
+for _ in range(T):
+    N = int(data[index])
+    index += 1
+    A = list(map(int, data[index:index + N]))
+    index += N
+
+    min_cost = float('inf')
+
+    suffix_min = [0] * (N + 1)
+    suffix_min[N] = float('inf')
+    for i in range(N - 1, -1, -1):
+        suffix_min[i] = min(A[i], suffix_min[i + 1])
+
+
+    for i in range(N + 1):
+        prefix_cost = A[i - 1] if i > 0 else float('inf')
+        suffix_cost = suffix_min[i]
+        total_cost = prefix_cost + suffix_cost
+        min_cost = min(min_cost, total_cost)
+
+    for i in range(N):
+        if i + 1 >= N:
+            min_cost = min(min_cost, A[i])
+        if N - i <= N and i == 0:
+            min_cost = min(min_cost, A[i])
+
+    arr.append(min_cost)
+
+print(*arr, sep='\n')
