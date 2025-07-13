@@ -1,0 +1,4 @@
+https://www.codechef.com/START194D/problems/BAKECAKE1
+
+N, M = map(int, input().split())
+print((M*50)-(N*30))
