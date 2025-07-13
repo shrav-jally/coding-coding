@@ -1,0 +1,15 @@
+https://www.codechef.com/START194D/problems/BAKECAKE3
+
+arr = []
+for _ in range(int(input())):
+    N = int(input())
+    A = list(map(int, input().split()))
+    max_profit = 0
+    for X in range(0, max(A) + 1): 
+        profit = 0
+        for a in A:
+            profit += 50 * min(X, a) - 30 * X
+        max_profit = max(max_profit, profit)
+    arr.append(max_profit)
+
+print(*arr, sep='\n')
