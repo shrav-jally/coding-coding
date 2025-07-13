@@ -1,0 +1,54 @@
+https://www.codechef.com/START194D/problems/MUNCHMOD
+
+import sys
+from collections import defaultdict
+
+def solve():
+    input = sys.stdin.read
+    data = input().split()
+    index = 0
+    T = int(data[index])
+    index += 1
+    results = []
+    
+    for _ in range(T):
+        N = int(data[index])
+        index += 1
+        A = list(map(int, data[index:index + N]))
+        index += N
+        
+        if N < 3:
+            results.append("0")
+            continue
+        
+        freq = defaultdict(int)
+        for val in A:
+            freq[val] += 1
+        
+        max_mod = 0
+        
+        unique_vals = sorted(set(A), reverse=True)
+        
+        for j in range(N):
+            for k in range(j + 1, N):
+                s = A[j] + A[k]
+                
+                if s <= 0:
+                    continue
+                
+                for val in unique_vals:
+                    needed = 0
+                    if val == A[j]:
+                        needed += 1
+                    if val == A[k]:
+                        needed += 1
+                    
+                    if freq[val] > needed:
+                        max_mod = max(max_mod, val % s)
+                        break  
+        
+        results.append(str(max_mod))
+    
+    print("\n".join(results))
+
+solve()
