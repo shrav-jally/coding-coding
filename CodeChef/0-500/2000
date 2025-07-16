@@ -1,0 +1,5 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/RIP2000?tab=statement
+
+a=int(input())
+ans=a*4
+print(ans)
