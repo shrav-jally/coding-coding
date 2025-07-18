@@ -1,0 +1,6 @@
+https://codeforces.com/problemset/problem/200/B
+
+n = int(input())
+percentages = list(map(int, input().split()))
+average = sum(percentages) / n
+print(f"{average:.12f}")
