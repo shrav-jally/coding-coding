@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/MINHEIGHT
+
+num =int(input())
+for i in range(num):
+    a=input()
+    b=a.split()
+    if int(b[0])>=int(b[1]):
+        print("yes")
+    else:
+        print("no")
