@@ -1,0 +1,5 @@
+https://codeforces.com/problemset/problem/228/A
+
+colors = list(map(int, input().split()))
+unique_colors = len(set(colors))
+print(4 - unique_colors)
