@@ -1,0 +1,9 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/PAR2?tab=statement
+
+T=int(input())
+for _ in range(T):
+    N=int(input())
+    if(N%2==0):
+        print("YES")
+    else:
+        print("NO")
