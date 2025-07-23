@@ -1,0 +1,8 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/CNTWRD
+
+# cook your dish here
+t=int(input())
+for i in range(t):
+    n,m=map(int,input().split())
+    print(n*m)
+    
