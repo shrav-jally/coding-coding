@@ -1,0 +1,20 @@
+https://codeforces.com/problemset/problem/469/A
+
+n = int(input())
+
+# Read levels Little X can pass
+x_input = list(map(int, input().split()))
+x_levels = set(x_input[1:])  # skip the first number which is count
+
+# Read levels Little Y can pass
+y_input = list(map(int, input().split()))
+y_levels = set(y_input[1:])  # skip the first number which is count
+
+# Combine both sets
+all_levels_passed = x_levels.union(y_levels)
+
+# Check if they can pass all levels
+if len(all_levels_passed) == n:
+    print("I become the guy.")
+else:
+    print("Oh, my keyboard!")
