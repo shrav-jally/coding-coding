@@ -1,0 +1,4 @@
+https://www.codechef.com/START197D/problems/INDDAY
+
+x = int(input())
+print(15-x if x <= 15 else -1)
