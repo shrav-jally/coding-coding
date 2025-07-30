@@ -1,0 +1,18 @@
+https://www.codechef.com/START197D/problems/GOODRANK2
+
+import itertools
+
+def solve():
+    n = int(input())
+
+    if n == 3:
+        permutations = list(itertools.permutations(range(1, n + 1)))
+        print(len(permutations))
+        for p in permutations:
+            print(*(p))
+    else:
+        print(2)
+        print(*(range(1, n + 1)))
+        print(*(range(n, 0, -1)))
+
+solve()
