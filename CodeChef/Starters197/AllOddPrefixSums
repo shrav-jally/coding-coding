@@ -1,0 +1,14 @@
+https://www.codechef.com/START197D/problems/ODDPREFSUM
+
+arr=[]
+for _ in range(int(input())):
+    N=int(input())
+    A=list(map(int, input().split()))
+    oc=0
+    for i in A:
+        if i%2==1:
+            oc+=1
+    arr.append("YES") if oc==1 else arr.append("NO")
+        
+    
+print(*arr, sep='\n')
