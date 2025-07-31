@@ -1,0 +1,11 @@
+https://takeuforward.org/plus/dsa/problems/union-of-two-sorted-arrays
+
+class Solution:
+    def unionArray(self, nums1, nums2):
+        nums1=list(set(nums1))
+        nums2=list(set(nums2))
+        s=list(set(nums1+nums2))
+        s=sorted(s)
+        return s
+
+s=Solution()
