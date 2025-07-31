@@ -1,0 +1,9 @@
+https://takeuforward.org/plus/dsa/problems/left-rotate-array
+
+class Solution:
+    def rotateArray(self, nums, k):
+        for i in range(k):
+            p=nums.pop(0)
+            nums.append(p)
+
+s=Solution()
