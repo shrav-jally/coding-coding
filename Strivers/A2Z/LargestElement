@@ -1,0 +1,7 @@
+https://takeuforward.org/plus/dsa/problems/largest-element
+
+class Solution:
+    def largestElement(self, nums):
+        return max(nums)     
+
+s=Solution()
