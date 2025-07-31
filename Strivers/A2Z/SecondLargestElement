@@ -1,0 +1,14 @@
+https://takeuforward.org/plus/dsa/problems/second-largest-element
+
+class Solution:
+    def secondLargestElement(self, nums):
+        unums=list(set(nums))
+        unums=sorted(unums, reverse=True)
+        if len(unums)<2:
+            return -1
+        elif unums[1]>unums[2]:
+            return unums[1]
+        else:
+            return -1
+
+s=Solution()
