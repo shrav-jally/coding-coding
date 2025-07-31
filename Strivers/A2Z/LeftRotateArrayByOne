@@ -1,0 +1,8 @@
+https://takeuforward.org/plus/dsa/problems/left-rotate-array-by-one
+
+class Solution:
+    def rotateArrayByOne(self, nums):
+        p=nums.pop(0)
+        nums.append(p)
+        
+s=Solution()
