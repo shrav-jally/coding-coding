@@ -1,0 +1,8 @@
+https://takeuforward.org/plus/dsa/problems/input-output
+
+class Solution:
+    def printNumber(self):
+        N=int(input())
+        print(N)
+
+output=Solution()
