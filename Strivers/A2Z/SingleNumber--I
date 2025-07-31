@@ -1,0 +1,12 @@
+https://takeuforward.org/plus/dsa/problems/single-number---i
+
+from collections import Counter
+
+class Solution:
+    def singleNumber(self, nums):
+        freq = Counter(nums)
+        for key, value in freq.items():
+            if value == 1:
+                return key
+
+s = Solution()
