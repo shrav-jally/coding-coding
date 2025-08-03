@@ -1,0 +1,17 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/SUMM
+
+def main():
+    T = int(input())
+    while T > 0:
+        check_sum()
+        T -= 1
+
+def check_sum():
+    A, B, C = map(int, input().split())
+    sum = A + B
+    if (sum == C):
+        print ("YES")
+    else:
+        print ("NO")
+
+main()
