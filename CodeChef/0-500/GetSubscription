@@ -1,0 +1,9 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/SUBSCRIBE?tab=statement
+
+t = int(input())
+for i in range(t):
+    X = int(input())
+    if (X>30):
+        print("YES")
+    else:
+        print("NO")
