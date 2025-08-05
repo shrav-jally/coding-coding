@@ -1,0 +1,11 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/proble
+
+A, B, X, Y = map(int, input().split())
+points_Messi = A * 2 + B
+points_Ronaldo = X * 2 + Y
+if points_Messi > points_Ronaldo:
+    print("Messi")
+elif points_Messi < points_Ronaldo:
+    print("Ronaldo")
+else:
+    print("Equal")
