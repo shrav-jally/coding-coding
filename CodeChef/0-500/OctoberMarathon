@@ -1,0 +1,10 @@
+https://www.codechef.com/practice/course/basic-programming-concepts/DIFF500/problems/OCTATHON?tab=statement
+
+x=int(input())
+if 1<=x<=10:
+    if x<3:
+        print("gold")
+    if 3<=x<6:
+        print("silver")
+    if x>=6:
+        print("bronze")
