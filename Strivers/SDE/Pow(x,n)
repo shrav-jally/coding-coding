@@ -1,0 +1,27 @@
+https://takeuforward.org/plus/dsa/problems/pow(x,n)
+
+O(|n|) time, O(1) space
+
+class Solution:
+    def myPow(self, x, n):
+        result = 1.0
+        power = abs(n)
+        for _ in range(power):
+            result *= x
+        return result if n >= 0 else 1 / result
+
+O(log|n|) time, O(1) space
+
+class Solution:
+    def myPow(self, x, n):
+        if n == 0:
+            return 1
+        if n < 0:
+            x, n = 1 / x, -n
+        result = 1
+        while n:
+            if n % 2:
+                result *= x
+            x *= x
+            n //= 2
+        return result
