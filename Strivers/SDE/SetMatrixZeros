@@ -1,5 +1,7 @@
 https://takeuforward.org/plus/dsa/problems/set-matrix-zeroes
 
+O(m×n) time but uses O(m+n) extra space
+
 class Solution:
     def setZeroes(self, matrix):
         rows, cols = len(matrix), len(matrix[0])
@@ -20,6 +22,8 @@ class Solution:
 s=Solution()
 
 #another approach
+
+O(m×n) time and O(1) extra space
 
 class Solution:
     def setZeroes(self, matrix):
