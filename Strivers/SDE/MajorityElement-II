@@ -1,0 +1,40 @@
+https://takeuforward.org/plus/dsa/problems/majority-element-ii
+
+O(n) time, O(n) space
+
+class Solution:
+    def majorityElementTwo(self, nums):
+        count = {}
+        res = []
+        for num in nums:
+            count[num] = count.get(num, 0) + 1
+        for num in sorted(count.keys()):
+            if count[num] > len(nums) // 3:
+                res.append(num)
+        return res
+
+O(n) time, O(1) space 
+
+class Solution:
+    def majorityElementTwo(self, nums):
+        if not nums:
+            return []
+        candidate1 = candidate2 = None
+        count1 = count2 = 0
+        for num in nums:
+            if num == candidate1:
+                count1 += 1
+            elif num == candidate2:
+                count2 += 1
+            elif count1 == 0:
+                candidate1, count1 = num, 1
+            elif count2 == 0:
+                candidate2, count2 = num, 1
+            else:
+                count1 -= 1
+                count2 -= 1
+        res = []
+        for c in [candidate1, candidate2]:
+            if nums.count(c) > len(nums) // 3:
+                res.append(c)
+        return sorted(res)
