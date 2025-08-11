@@ -1,0 +1,25 @@
+https://takeuforward.org/plus/dsa/problems/rotate-matrix-by-90-degrees
+
+O(n^2) time, O(n^2) space
+
+class Solution:
+    def rotateMatrix(self, matrix):
+        n = len(matrix)
+        rotated = [[0] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                rotated[j][n - 1 - i] = matrix[i][j]
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = rotated[i][j]
+
+O(n^2) time, O(1) space
+                   
+class Solution:
+    def rotateMatrix(self, matrix):
+        n = len(matrix)
+        for i in range(n):
+            for j in range(i + 1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        for row in matrix:
+            row.reverse()
