@@ -1,0 +1,32 @@
+https://takeuforward.org/plus/dsa/problems/find-the-duplicate-number
+
+
+O(n log n) time, O(1) space – Binary Search on Value
+
+class Solution:
+    def findDuplicate(self, nums):
+        low, high = 1, len(nums) - 1
+        while low < high:
+            mid = (low + high) // 2
+            count = sum(num <= mid for num in nums)
+            if count > mid:
+                high = mid
+            else:
+                low = mid + 1
+        return low
+
+O(n) time, O(1) space – Floyd's Tortoise and Hare (Cycle Detection)
+
+class Solution:
+    def findDuplicate(self, nums):
+        slow = fast = nums[0]
+        while True:
+            slow = nums[slow]
+            fast = nums[nums[fast]]
+            if slow == fast:
+                break
+        slow2 = nums[0]
+        while slow != slow2:
+            slow = nums[slow]
+            slow2 = nums[slow2]
+        return slow
