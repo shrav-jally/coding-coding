@@ -1,0 +1,23 @@
+https://takeuforward.org/plus/dsa/problems/majority-element-i
+
+O(n) time, O(n) space
+
+class Solution:
+    def majorityElement(self, nums):
+        count = {}
+        for num in nums:
+            count[num] = count.get(num, 0) + 1
+            if count[num] > len(nums) // 2:
+                return num
+
+O(n) time, O(1) space 
+
+class Solution:
+    def majorityElement(self, nums):
+        count = 0
+        candidate = None
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        return candidate
