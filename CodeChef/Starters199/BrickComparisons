@@ -1,0 +1,15 @@
+https://www.codechef.com/START199D/problems/STICKCOMP
+
+for _ in range(int(input())):
+    N = int(input())
+    A = list(map(int, input().split()))
+    
+    current_largest_size = A[0]
+    current_brick_number = 1
+    
+    for i in range(1, N):
+        if A[i] > current_largest_size:
+            current_largest_size = A[i]
+            current_brick_number = i + 1
+            
+    print(current_brick_number)
