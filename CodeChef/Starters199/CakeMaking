@@ -1,0 +1,4 @@
+https://www.codechef.com/START199D/problems/CAKEMAKE
+
+A, B = map(int, input().split())
+print((A*B)-min(A,B))
