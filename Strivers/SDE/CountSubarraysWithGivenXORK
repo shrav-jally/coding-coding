@@ -1,0 +1,30 @@
+https://takeuforward.org/plus/dsa/problems/count-subarrays-with-given-xor-k
+
+#O(n²) time, O(1)
+
+class Solution:
+    def countSubarrays(self, nums, k):
+        n = len(nums)
+        count = 0
+        for i in range(n):
+            xor_val = 0
+            for j in range(i, n):
+                xor_val ^= nums[j]
+                if xor_val == k:
+                    count += 1
+        return count
+
+
+#O(n) time, O(n)
+
+class Solution:
+    def countSubarrays(self, nums, k):
+        xor_map = {0: 1}
+        xor_val = 0
+        count = 0
+        for num in nums:
+            xor_val ^= num
+            if xor_val ^ k in xor_map:
+                count += xor_map[xor_val ^ k]
+            xor_map[xor_val] = xor_map.get(xor_val, 0) + 1
+        return count
