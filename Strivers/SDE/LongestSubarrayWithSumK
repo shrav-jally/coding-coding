@@ -1,0 +1,33 @@
+https://takeuforward.org/plus/dsa/problems/longest-subarray-with-sum-k
+
+#O(n²) time, O(1)
+
+class Solution:
+    def longestSubarray(self, nums, k):
+        n = len(nums)
+        max_len = 0
+        for i in range(n):
+            s = 0
+            for j in range(i, n):
+                s += nums[j]
+                if s == k:
+                    max_len = max(max_len, j - i + 1)
+        return max_len
+
+
+#O(n) time, O(n) space
+
+class Solution:
+    def longestSubarray(self, nums, k):
+        prefix_sum = 0
+        seen = {}
+        max_len = 0
+        for i, num in enumerate(nums):
+            prefix_sum += num
+            if prefix_sum == k:
+                max_len = max(max_len, i + 1)
+            if prefix_sum - k in seen:
+                max_len = max(max_len, i - seen[prefix_sum - k])
+            if prefix_sum not in seen:
+                seen[prefix_sum] = i
+        return max_len
