@@ -1,0 +1,33 @@
+https://takeuforward.org/plus/dsa/problems/longest-consecutive-sequence-in-an-array
+
+#O(n²) time, O(1)
+
+class Solution:
+    def longestConsecutive(self, nums):
+        if not nums:
+            return 0
+        longest = 0
+        for num in nums:
+            length = 1
+            current = num
+            while current + 1 in nums:
+                current += 1
+                length += 1
+            longest = max(longest, length)
+        return longest
+
+#O(n) time, O(n)
+
+class Solution:
+    def longestConsecutive(self, nums):
+        num_set = set(nums)
+        longest = 0
+        for num in num_set:
+            if num - 1 not in num_set:
+                length = 1
+                current = num
+                while current + 1 in num_set:
+                    current += 1
+                    length += 1
+                longest = max(longest, length)
+        return longest
