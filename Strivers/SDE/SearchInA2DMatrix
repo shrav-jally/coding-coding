@@ -1,0 +1,34 @@
+https://takeuforward.org/plus/dsa/problems/search-in-a-2d-matrix
+
+#O(m × n) time, O(1) space
+
+def searchMatrix_brute(mat, target):
+    for row in mat:
+        for num in row:
+            if num == target:
+                return True
+    return False
+
+
+#O(log(m*n)) time, O(1) space
+
+def searchMatrix(mat, target):
+    if not mat or not mat[0]:
+        return False
+    
+    m, n = len(mat), len(mat[0])
+    left, right = 0, m * n - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        row, col = divmod(mid, n)
+        val = mat[row][col]
+        
+        if val == target:
+            return True
+        elif val < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return False
