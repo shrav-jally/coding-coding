@@ -1,0 +1,14 @@
+https://leetcode.com/problems/24-game/description/?envType=daily-question&envId=2025-08-18
+
+class Solution:
+    def judgePoint24(self, cards):
+        import itertools
+        def dfs(nums):
+            if len(nums) == 1:
+                return abs(nums[0] - 24) < 1e-6
+            for a, b, *rest in itertools.permutations(nums):
+                for val in {a + b, a - b, b - a, a * b} | ({a / b} if abs(b) > 1e-6 else set()) | ({b / a} if abs(a) > 1e-6 else set()):
+                    if dfs([val] + rest):
+                        return True
+            return False
+        return dfs(cards)
