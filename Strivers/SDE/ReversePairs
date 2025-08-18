@@ -1,0 +1,47 @@
+https://takeuforward.org/plus/dsa/problems/reverse-pairs
+
+#O(n²) time, O(1)
+
+class Solution:
+    def reversePairs(self, nums):
+        n = len(nums)
+        count = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                if nums[i] > 2 * nums[j]:
+                    count += 1
+        return count
+
+#O(n log n) time, O(n)
+
+class Solution:
+    def reversePairs(self, nums):
+        def merge_sort(arr, left, right):
+            if left >= right:
+                return 0
+            mid = (left + right) // 2
+            count = merge_sort(arr, left, mid) + merge_sort(arr, mid + 1, right)
+            j = mid + 1
+            for i in range(left, mid + 1):
+                while j <= right and arr[i] > 2 * arr[j]:
+                    j += 1
+                count += j - (mid + 1)
+            temp = []
+            i, j = left, mid + 1
+            while i <= mid and j <= right:
+                if arr[i] <= arr[j]:
+                    temp.append(arr[i])
+                    i += 1
+                else:
+                    temp.append(arr[j])
+                    j += 1
+            while i <= mid:
+                temp.append(arr[i])
+                i += 1
+            while j <= right:
+                temp.append(arr[j])
+                j += 1
+            for i in range(len(temp)):
+                arr[left + i] = temp[i]
+            return count
+        return merge_sort(nums, 0, len(nums) - 1)
