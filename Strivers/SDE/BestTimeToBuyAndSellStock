@@ -1,0 +1,25 @@
+https://takeuforward.org/plus/dsa/problems/best-time-to-buy-and-sell-stock
+
+#O(n²) time, O(1)
+
+class Solution:
+    def maxProfit(self, arr):
+        n = len(arr)
+        ans = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                ans = max(ans, arr[j] - arr[i])
+        return ans
+
+#O(n) time, O(1)
+
+class Solution:
+    def maxProfit(self, arr):
+        min_price = float('inf')
+        ans = 0
+        for p in arr:
+            if p < min_price:
+                min_price = p
+            elif p - min_price > ans:
+                ans = p - min_price
+        return ans
