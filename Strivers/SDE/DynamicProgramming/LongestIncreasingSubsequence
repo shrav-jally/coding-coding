@@ -1,0 +1,40 @@
+https://takeuforward.org/plus/dsa/problems/longest-increasing-subsequence
+
+# recursion + memoization solution
+# Time Complexity: O(n^2), Space Complexity: O(n^2)
+
+class Solution:
+    def LIS(self, nums):
+        n = len(nums)
+        dp = [[-1] * (n + 1) for _ in range(n)]
+
+        def f(ind, prev_ind):
+            if ind == n:
+                return 0
+            if dp[ind][prev_ind + 1] != -1:
+                return dp[ind][prev_ind + 1]
+
+            length = f(ind + 1, prev_ind)
+
+            if prev_ind == -1 or nums[ind] > nums[prev_ind]:
+                length = max(length, 1 + f(ind + 1, ind))
+
+            dp[ind][prev_ind + 1] = length
+            return length
+
+        return f(0, -1)
+
+# brute force no memoization
+# Time Complexity: O(2^n), Space Complexity: O(n)
+
+class Solution:
+    def LIS(self, nums):
+        def dfs(prev_index, curr_index):
+            if curr_index == len(nums):
+                return 0
+            not_take = dfs(prev_index, curr_index + 1)
+            take = 0
+            if prev_index == -1 or nums[curr_index] > nums[prev_index]:
+                take = 1 + dfs(curr_index, curr_index + 1)
+            return max(take, not_take)
+        return dfs(-1, 0)
