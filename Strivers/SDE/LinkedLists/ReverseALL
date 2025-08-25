@@ -1,0 +1,13 @@
+https://takeuforward.org/plus/dsa/problems/reverse-a-ll
+
+class Solution:
+    def reverseList(self, head):
+        previous = None              
+        current = head               
+
+        while current != None:
+            nextnode = current.next  
+            current.next = previous  
+            previous = current       
+            current = nextnode       
+        return previous
