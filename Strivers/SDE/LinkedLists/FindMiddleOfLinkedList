@@ -1,0 +1,10 @@
+https://takeuforward.org/plus/dsa/problems/find-middle-of-linked-list
+
+class Solution:
+    def middleOfLinkedList(self, head):
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
