@@ -1,0 +1,35 @@
+https://takeuforward.org/plus/dsa/problems/flattening-of-ll
+
+class ListNode:
+    def __init__(self, val=0, next=None, child=None):
+        self.val = val
+        self.next = next
+        self.child = child
+
+class Solution:
+    def mergeTwoLists(self, a, b):
+        dummy = ListNode(0)
+        curr = dummy
+
+        while a and b:
+            if a.val < b.val:
+                curr.child = a
+                a = a.child
+            else:
+                curr.child = b
+                b = b.child
+            curr = curr.child
+        if a:
+            curr.child = a
+        else:
+            curr.child = b
+
+        return dummy.child
+
+    def flattenLinkedList(self, head):
+        if not head or not head.next:
+            return head
+        head.next = self.flattenLinkedList(head.next)
+        head = self.mergeTwoLists(head, head.next)
+
+        return head
