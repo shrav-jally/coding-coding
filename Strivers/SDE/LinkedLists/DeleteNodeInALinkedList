@@ -1,0 +1,6 @@
+https://takeuforward.org/plus/dsa/problems/delete-node-in-a-linked-list-o1
+
+class Solution:
+    def deleteNode(self, node):
+        node.val = node.next.val
+        node.next = node.next.next
