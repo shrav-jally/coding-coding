@@ -1,0 +1,36 @@
+https://takeuforward.org/plus/dsa/problems/reverse-ll-in-group-of-given-size-k
+
+# Definition of singly linked list:
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def reverseKGroup(self, head, k):
+        # helper to check if at least k nodes exist
+        def has_k_nodes(node, k):
+            count = 0
+            while node and count < k:
+                node = node.next
+                count += 1
+            return count == k
+
+        # helper to reverse k nodes
+        def reverse_k_nodes(node, k):
+            prev, curr = None, node
+            while k > 0:
+                nxt = curr.next
+                curr.next = prev
+                prev = curr
+                curr = nxt
+                k -= 1
+            return prev, node, curr
+            # returns: new_head, new_tail, next_segment_start
+
+        if not has_k_nodes(head, k):
+            return head
+
+        new_head, new_tail, next_start = reverse_k_nodes(head, k)
+        new_tail.next = self.reverseKGroup(next_start, k)
+        return new_head
