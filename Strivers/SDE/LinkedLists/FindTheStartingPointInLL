@@ -1,0 +1,34 @@
+https://takeuforward.org/plus/dsa/problems/find-the-starting-point-in-ll
+
+# Definition of singly linked list:
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def findStartingPoint(self, head):
+        if not head or not head.next:
+            return None
+
+        slow, fast = head, head
+        has_cycle = False
+
+        # Step 1: Detect cycle
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                has_cycle = True
+                break
+
+        if not has_cycle:
+            return None
+
+        # Step 2: Find entry point
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return slow  # starting node of cycle
