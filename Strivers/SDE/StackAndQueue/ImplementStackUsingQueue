@@ -1,5 +1,7 @@
 https://takeuforward.org/plus/dsa/problems/implement-stack-using-queue
 
+# 2 queues
+
 from collections import deque
 
 class QueueStack:
@@ -25,6 +27,44 @@ class QueueStack:
 
     def isEmpty(self):
         return len(self.q1) == 0
+
+if __name__ == "__main__":
+    s = QueueStack()
+    s.push(5)
+    s.push(10)
+    print(s.top())      
+    print(s.pop())      
+    print(s.isEmpty())  
+    print(s.pop())      
+    print(s.isEmpty())  
+
+
+# 1 queue
+
+from collections import deque
+
+class QueueStack:
+    def __init__(self):
+        self.q = deque()
+
+    def push(self, x):
+        self.q.append(x)
+        for _ in range(len(self.q) - 1):
+            self.q.append(self.q.popleft())
+
+    def pop(self):
+        if self.isEmpty():
+            return None
+        return self.q.popleft()
+
+    def top(self):
+        if self.isEmpty():
+            return None
+        return self.q[0]
+
+    def isEmpty(self):
+        return len(self.q) == 0
+
 
 if __name__ == "__main__":
     s = QueueStack()
