@@ -1,0 +1,53 @@
+https://takeuforward.org/plus/dsa/problems/implement-queue-using-arrays
+
+class simpleQueue:
+
+  def __init__(self):
+    self.size = int(input("Enter the size of the Simple Queue:"))
+    self.queue = [None]* self.size
+    self.front = 0
+    self.rear = -1
+
+  def insert(self, ele):
+    if(self.rear == self.size-1):
+      print("Queue is full, we can't insert")
+    else:
+      self.rear = self.rear+1
+      self.queue[self.rear] = ele
+      print("Inserted element is: ",ele)
+
+  def delete(self):
+    if (self.front == 0 and self.rear == -1):
+      print("Queue is empty,we can't delete")
+    else:
+      print("Deleted element is: ",self.queue[self.front])
+      if(self.front == self.rear):
+        self.front = 0
+        self.rear = -1
+      else:
+        self.front = self.front+1
+
+  def display(self):
+    if(self.front == 0 and self.rear == -1):
+      print("Queue is empty, we can't display")
+    else:
+      print("elements in the simple queue")
+      i=self.front
+      while (i != self.rear):
+        print(self.queue[i],end="-->")
+        i= i+1
+      print(self.queue[i])
+
+q = simpleQueue()
+q.insert(10)
+q.insert(20)
+q.insert(30)
+q.display()
+q.delete()
+q.delete()
+q.delete()
+q.delete()
+q.display()
+q.insert(40)
+q.insert(50)
+q.display()
