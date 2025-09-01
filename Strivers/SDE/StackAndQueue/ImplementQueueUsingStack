@@ -1,0 +1,79 @@
+https://takeuforward.org/plus/dsa/problems/implement-queue-using-stack
+
+# 2 stacks 
+
+class StackQueue:
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+
+    def push(self, x):
+        self.s1.append(x)
+
+    def pop(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        if not self.s2:
+            return None
+        return self.s2.pop()
+
+    def peek(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        if not self.s2:
+            return None
+        return self.s2[-1]
+
+    def isEmpty(self):
+        return not self.s1 and not self.s2
+
+
+if __name__ == "__main__":
+    q = StackQueue()
+    q.push(4)
+    q.push(8)
+    print(q.pop())     
+    print(q.peek())    
+    print(q.isEmpty()) 
+
+# 1 stack
+
+class StackQueue:
+    def __init__(self):
+        self.s = []
+
+    def push(self, x):
+        self.s.append(x)
+
+    def pop(self):
+        if not self.s:
+            return None
+        x = self.s.pop()
+        if not self.s:
+            return x
+        res = self.pop()
+        self.s.append(x)
+        return res
+
+    def peek(self):
+        if not self.s:
+            return None
+        x = self.s.pop()
+        if not self.s:
+            self.s.append(x)
+            return x
+        res = self.peek()
+        self.s.append(x)
+        return res
+
+    def isEmpty(self):
+        return not self.s
+
+
+if __name__ == "__main__":
+    q = StackQueue()
+    q.push(6)
+    print(q.pop())     
+    print(q.isEmpty()) 
