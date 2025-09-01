@@ -1,0 +1,42 @@
+https://takeuforward.org/plus/dsa/problems/lfu-cache
+
+from collections import defaultdict, OrderedDict
+
+class LFUCache:
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.keyToValFreq = {}         
+        self.freqToKeys = defaultdict(OrderedDict) 
+        self.minFreq = 0
+
+    def _updateFreq(self, key):
+        val, freq = self.keyToValFreq[key]
+        del self.freqToKeys[freq][key]
+        if not self.freqToKeys[freq]:
+            del self.freqToKeys[freq]
+            if self.minFreq == freq:
+                self.minFreq += 1
+        self.freqToKeys[freq + 1][key] = None
+        self.keyToValFreq[key] = (val, freq + 1)
+
+    def get(self, key: int) -> int:
+        if key not in self.keyToValFreq:
+            return -1
+        self._updateFreq(key)
+        return self.keyToValFreq[key][0]
+
+    def put(self, key: int, value: int) -> None:
+        if self.capacity == 0:
+            return
+        if key in self.keyToValFreq:
+            self.keyToValFreq[key] = (value, self.keyToValFreq[key][1])
+            self._updateFreq(key)
+            return
+        if len(self.keyToValFreq) >= self.capacity:
+            oldKey, _ = self.freqToKeys[self.minFreq].popitem(last=False)
+            del self.keyToValFreq[oldKey]
+            if not self.freqToKeys[self.minFreq]:
+                del self.freqToKeys[self.minFreq]
+        self.keyToValFreq[key] = (value, 1)
+        self.freqToKeys[1][key] = None
+        self.minFreq = 1
