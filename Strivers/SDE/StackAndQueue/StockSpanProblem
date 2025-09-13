@@ -1,0 +1,10 @@
+https://takeuforward.org/plus/dsa/problems/stock-span-problem
+
+class Solution:
+    def stockSpan(self, arr, n):
+        st, res = [], [0]*n
+        for i in range(n):
+            while st and arr[st[-1]] <= arr[i]: st.pop()
+            res[i] = i+1 if not st else i-st[-1]
+            st.append(i)
+        return res
