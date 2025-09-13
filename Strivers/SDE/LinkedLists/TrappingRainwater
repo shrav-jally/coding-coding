@@ -1,0 +1,11 @@
+https://takeuforward.org/plus/dsa/problems/trapping-rainwater
+
+class Solution:
+    def trap(self, h):
+        l, r, lm, rm, res = 0, len(h)-1, 0, 0, 0
+        while l < r:
+            if h[l] < h[r]:
+                lm = max(lm, h[l]); res += lm - h[l]; l += 1
+            else:
+                rm = max(rm, h[r]); res += rm - h[r]; r -= 1
+        return res
