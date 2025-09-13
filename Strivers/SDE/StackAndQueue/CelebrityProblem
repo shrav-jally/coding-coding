@@ -1,0 +1,14 @@
+https://takeuforward.org/plus/dsa/problems/celebrity-problem
+
+class Solution:
+    def celebrity(self, M):
+        n = len(M)
+        st = list(range(n))
+        while len(st) > 1:
+            a = st.pop(); b = st.pop()
+            st.append(b if M[a][b] else a)
+        if not st: return -1
+        c = st[0]
+        for i in range(n):
+            if i!=c and (M[c][i] or not M[i][c]): return -1
+        return c
