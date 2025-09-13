@@ -1,0 +1,17 @@
+https://takeuforward.org/plus/dsa/problems/sort-a-stack
+
+class Solution:
+    def sortStack(self, stack):
+        if stack:
+            x = stack.pop()
+            self.sortStack(stack)
+            self._insert(stack, x)
+        return stack
+
+    def _insert(self, stack, x):
+        if not stack or stack[-1] <= x:
+            stack.append(x)
+        else:
+            y = stack.pop()
+            self._insert(stack, x)
+            stack.append(y)
