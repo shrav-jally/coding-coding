@@ -1,0 +1,19 @@
+https://takeuforward.org/plus/dsa/problems/rotten-oranges
+
+from collections import deque
+
+class Solution:
+    def orangesRotting(self, g):
+        q, fresh = deque(), 0
+        for i in range(len(g)):
+            for j in range(len(g[0])):
+                if g[i][j]==2: q.append((i,j,0))
+                elif g[i][j]==1: fresh+=1
+        t=0
+        while q:
+            i,j,t = q.popleft()
+            for x,y in [(1,0),(-1,0),(0,1),(0,-1)]:
+                r,c=i+x,j+y
+                if 0<=r<len(g) and 0<=c<len(g[0]) and g[r][c]==1:
+                    g[r][c]=2; fresh-=1; q.append((r,c,t+1))
+        return -1 if fresh else t
