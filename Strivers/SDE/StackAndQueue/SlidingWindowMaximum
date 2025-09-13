@@ -1,0 +1,13 @@
+https://takeuforward.org/plus/dsa/problems/sliding-window-maximum
+
+from collections import deque
+
+class Solution:
+    def maxSlidingWindow(self, arr, k):
+        dq, res = deque(), []
+        for i, n in enumerate(arr):
+            while dq and arr[dq[-1]] < n: dq.pop()
+            dq.append(i)
+            if dq[0] == i-k: dq.popleft()
+            if i >= k-1: res.append(arr[dq[0]])
+        return res
