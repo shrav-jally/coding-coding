@@ -1,0 +1,12 @@
+https://takeuforward.org/plus/dsa/problems/maximum-consecutive-ones
+
+class Solution:
+    def findMaxConsecutiveOnes(self, nums):
+        count = res = 0
+        for n in nums:
+            if n == 1:
+                count += 1
+                res = max(res, count)
+            else:
+                count = 0
+        return res
