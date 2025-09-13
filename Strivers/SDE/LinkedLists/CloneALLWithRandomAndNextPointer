@@ -1,0 +1,21 @@
+https://takeuforward.org/plus/dsa/problems/clone-a-ll-with-random-and-next-pointer
+
+class Solution:
+    def copyRandomList(self, head: 'ListNode') -> 'ListNode':
+        if not head:
+            return None
+
+        # Map original node -> cloned node
+        mp = {}
+        curr = head
+        while curr:
+            mp[curr] = ListNode(curr.val)
+            curr = curr.next
+
+        curr = head
+        while curr:
+            mp[curr].next = mp.get(curr.next)
+            mp[curr].random = mp.get(curr.random)
+            curr = curr.next
+
+        return mp[head]
