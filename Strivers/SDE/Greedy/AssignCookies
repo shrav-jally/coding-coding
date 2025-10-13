@@ -1,0 +1,15 @@
+https://takeuforward.org/plus/dsa/problems/assign-cookies
+
+class Solution:
+    def findMaximumCookieStudents(self, Student, Cookie):
+        Student.sort()
+        Cookie.sort()
+        i = j = res = 0
+        while i < len(Student) and j < len(Cookie):
+            if Cookie[j] >= Student[i]:
+                res += 1
+                i += 1
+                j += 1
+            else:
+                j += 1
+        return res
