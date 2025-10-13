@@ -1,0 +1,17 @@
+https://takeuforward.org/plus/dsa/problems/job-sequencing-problem
+
+# Greedy – O(N log N + N*M)
+class Solution:
+    def JobScheduling(self, Jobs):
+        Jobs.sort(key=lambda x: x[2], reverse=True)
+        max_dead = max(job[1] for job in Jobs)
+        slot = [-1] * (max_dead + 1)
+        count, profit = 0, 0
+        for job in Jobs:
+            for t in range(job[1], 0, -1):
+                if slot[t] == -1:
+                    slot[t] = job[0]
+                    count += 1
+                    profit += job[2]
+                    break
+        return count, profit
