@@ -1,0 +1,12 @@
+#https://takeuforward.org/plus/dsa/problems/n-meetings-in-one-room
+
+# Greedy – O(N log N)
+class Solution:
+    def maxMeetings(self, start, end):
+        meetings = sorted(zip(start, end), key=lambda x: x[1])
+        cnt, last_end = 0, -1
+        for s, e in meetings:
+            if s > last_end:
+                cnt += 1
+                last_end = e
+        return cnt
