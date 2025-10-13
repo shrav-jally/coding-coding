@@ -1,0 +1,15 @@
+https://takeuforward.org/plus/dsa/problems/top-k-frequent-elements
+
+# Heap-based – O(N log K)
+from collections import Counter
+import heapq
+
+class Solution:
+    def topKFrequent(self, nums, k):
+        freq = Counter(nums)
+        heap = [(-count, num) for num, count in freq.items()]
+        heapq.heapify(heap)
+        res = []
+        for _ in range(k):
+            res.append(heapq.heappop(heap)[1])
+        return res
