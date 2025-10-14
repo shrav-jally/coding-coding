@@ -1,0 +1,22 @@
+https://takeuforward.org/plus/dsa/problems/find-nth-root-of-a-number
+
+class Solution:
+    def NthRoot(self, n, m):
+        if m == 0 or m == 1:
+            return m
+
+        low = 1
+        high = m
+
+        while low <= high:
+            mid = (low + high) // 2
+            mid_power = mid ** n
+
+            if mid_power == m:
+                return mid
+            elif mid_power < m:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        return -1
