@@ -1,0 +1,26 @@
+https://takeuforward.org/plus/dsa/problems/merge-k-sorted-arrays
+
+import heapq
+
+class Solution:
+    def mergeKSortedArrays(self, arr, k):
+        result = []
+        min_heap = []
+
+        # Step 1: Push the first element of each array into the heap
+        # Each entry in heap: (value, row_index, col_index)
+        for i in range(k):
+            if arr[i]:  # ensure the array is not empty
+                heapq.heappush(min_heap, (arr[i][0], i, 0))
+
+        # Step 2: Extract-min and push next element from same array
+        while min_heap:
+            val, row, col = heapq.heappop(min_heap)
+            result.append(val)
+
+            # If there’s another element in the same row, push it
+            if col + 1 < len(arr[row]):
+                next_val = arr[row][col + 1]
+                heapq.heappush(min_heap, (next_val, row, col + 1))
+
+        return result
