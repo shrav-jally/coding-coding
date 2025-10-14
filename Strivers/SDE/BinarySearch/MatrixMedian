@@ -1,0 +1,27 @@
+https://takeuforward.org/plus/dsa/problems/matrix-median
+
+import bisect
+
+class Solution:
+    def findMedian(self, matrix):
+        r = len(matrix)
+        c = len(matrix[0])
+        total = r * c
+
+        # Find min and max elements
+        low = min(row[0] for row in matrix)
+        high = max(row[-1] for row in matrix)
+
+        while low <= high:
+            mid = (low + high) // 2
+            # Count of elements <= mid
+            count = 0
+            for row in matrix:
+                count += bisect.bisect_right(row, mid)
+
+            if count <= total // 2:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        return low
