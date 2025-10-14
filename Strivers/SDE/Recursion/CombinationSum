@@ -1,0 +1,24 @@
+https://takeuforward.org/plus/dsa/problems/combination-sum
+
+class Solution:
+    def combinationSum(self, candidates, target):
+        res = []
+
+        def backtrack(start, path, total):
+            # Base cases
+            if total == target:
+                res.append(path[:])
+                return
+            if total > target:
+                return  # stop exploring if sum exceeds target
+
+            for i in range(start, len(candidates)):
+                # choose candidates[i]
+                path.append(candidates[i])
+                # same i again because we can reuse the same number
+                backtrack(i, path, total + candidates[i])
+                # undo the choice
+                path.pop()
+
+        backtrack(0, [], 0)
+        return res
