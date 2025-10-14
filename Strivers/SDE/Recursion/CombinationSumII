@@ -1,0 +1,26 @@
+https://takeuforward.org/plus/dsa/problems/combination-sum-ii
+
+class Solution:
+    def combinationSum2(self, candidates, target):
+        res = []
+        candidates.sort()  # sort to handle duplicates easily
+
+        def backtrack(start, path, total):
+            if total == target:
+                res.append(path[:])
+                return
+            if total > target:
+                return  # prune the recursion
+
+            for i in range(start, len(candidates)):
+                # skip duplicates at the same level
+                if i > start and candidates[i] == candidates[i - 1]:
+                    continue
+
+                path.append(candidates[i])
+                # move to next index (i + 1) since each number can be used once
+                backtrack(i + 1, path, total + candidates[i])
+                path.pop()  # undo choice
+
+        backtrack(0, [], 0)
+        return res
