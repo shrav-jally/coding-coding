@@ -1,0 +1,74 @@
+https://takeuforward.org/plus/dsa/problems/implement-max-heap
+
+class Solution:
+    def initializeHeap(self):
+        self.heap = []
+
+    # Helper functions to get parent and child indices
+    def parent(self, i):
+        return (i - 1) // 2
+
+    def left(self, i):
+        return 2 * i + 1
+
+    def right(self, i):
+        return 2 * i + 2
+
+    def insert(self, key):
+        self.heap.append(key)
+        i = len(self.heap) - 1
+        # Percolate up
+        while i > 0 and self.heap[self.parent(i)] < self.heap[i]:
+            self.heap[self.parent(i)], self.heap[i] = self.heap[i], self.heap[self.parent(i)]
+            i = self.parent(i)
+
+    def getMax(self):
+        if not self.heap:
+            return None
+        return self.heap[0]
+
+    def extractMax(self):
+        if not self.heap:
+            return None
+        n = len(self.heap)
+        if n == 1:
+            self.heap.pop()
+            return
+        # Move last element to root
+        self.heap[0] = self.heap.pop()
+        self.maxHeapify(0)
+
+    def maxHeapify(self, i):
+        n = len(self.heap)
+        largest = i
+        l = self.left(i)
+        r = self.right(i)
+
+        if l < n and self.heap[l] > self.heap[largest]:
+            largest = l
+        if r < n and self.heap[r] > self.heap[largest]:
+            largest = r
+
+        if largest != i:
+            self.heap[i], self.heap[largest] = self.heap[largest], self.heap[i]
+            self.maxHeapify(largest)
+
+    def heapSize(self):
+        return len(self.heap)
+
+    def isEmpty(self):
+        return 1 if len(self.heap) == 0 else 0
+
+    def changeKey(self, index, new_val):
+        if index < 0 or index >= len(self.heap):
+            return
+        old_val = self.heap[index]
+        self.heap[index] = new_val
+        # If new value is greater, percolate up
+        if new_val > old_val:
+            while index > 0 and self.heap[self.parent(index)] < self.heap[index]:
+                self.heap[self.parent(index)], self.heap[index] = self.heap[index], self.heap[self.parent(index)]
+                index = self.parent(index)
+        # If smaller, percolate down
+        else:
+            self.maxHeapify(index)
