@@ -1,0 +1,16 @@
+https://takeuforward.org/plus/dsa/problems/k-th-largest-element-in-an-array
+
+import heapq
+
+class Solution:
+    def kthLargestElement(self, nums, k):
+        # Convert all elements to negative to simulate a Max Heap using heapq (which is a Min Heap)
+        max_heap = [-n for n in nums]
+        heapq.heapify(max_heap)  # O(n)
+
+        # Extract max (pop) k-1 times
+        for _ in range(k - 1):
+            heapq.heappop(max_heap)
+
+        # The root now holds the kth largest (negated)
+        return -heapq.heappop(max_heap)
