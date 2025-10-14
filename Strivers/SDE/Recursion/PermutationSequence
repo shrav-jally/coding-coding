@@ -1,0 +1,23 @@
+https://takeuforward.org/plus/dsa/problems/permutation-sequence
+
+class Solution:
+    def getPermutation(self, n, k):
+        import math
+        nums = [str(i) for i in range(1, n + 1)]
+        k -= 1  # convert to 0-indexed
+        res = []
+
+        def helper(nums, k):
+            if not nums:
+                return
+            n = len(nums)
+            fact = math.factorial(n - 1)
+            index = k // fact
+            res.append(nums[index])
+            # remove the used number
+            nums.pop(index)
+            # recurse for remaining numbers
+            helper(nums, k % fact)
+
+        helper(nums, k)
+        return ''.join(res)
