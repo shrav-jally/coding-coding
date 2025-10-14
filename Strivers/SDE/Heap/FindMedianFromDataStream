@@ -1,0 +1,33 @@
+https://takeuforward.org/plus/dsa/problems/find-median-from-data-stream
+
+import heapq
+
+class MedianFinder:
+    def __init__(self):
+        # max_heap (store as negatives for max-heap behavior)
+        self.max_heap = []  # left half
+        self.min_heap = []  # right half
+
+    def addNum(self, num):
+        # Step 1: Add to max_heap (store as negative to simulate max-heap)
+        heapq.heappush(self.max_heap, -num)
+
+        # Step 2: Ensure max_heap top <= min_heap top
+        if self.max_heap and self.min_heap and (-self.max_heap[0] > self.min_heap[0]):
+            val = -heapq.heappop(self.max_heap)
+            heapq.heappush(self.min_heap, val)
+
+        # Step 3: Balance sizes (max_heap can have 1 extra element)
+        if len(self.max_heap) > len(self.min_heap) + 1:
+            val = -heapq.heappop(self.max_heap)
+            heapq.heappush(self.min_heap, val)
+        elif len(self.min_heap) > len(self.max_heap):
+            val = heapq.heappop(self.min_heap)
+            heapq.heappush(self.max_heap, -val)
+
+    def findMedian(self):
+        # Odd number of elements → max_heap top
+        if len(self.max_heap) > len(self.min_heap):
+            return float(-self.max_heap[0])
+        # Even number of elements → average of tops
+        return (-self.max_heap[0] + self.min_heap[0]) / 2.0
