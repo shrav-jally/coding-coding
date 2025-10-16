@@ -1,0 +1,36 @@
+https://takeuforward.org/plus/dsa/problems/aggressive-cows
+
+class Solution:
+    def aggressiveCows(self, nums, k):
+        # Step 1: Sort stall positions
+        nums.sort()
+        n = len(nums)
+        
+        # Step 2: Helper function to check if cows can be placed
+        def canPlace(distance):
+            count = 1  # place the first cow at first stall
+            last_pos = nums[0]
+            
+            for i in range(1, n):
+                if nums[i] - last_pos >= distance:
+                    count += 1
+                    last_pos = nums[i]
+                    if count == k:  # all cows placed successfully
+                        return True
+            return False
+        
+        # Step 3: Binary search for the maximum possible minimum distance
+        low = 1  # min possible distance
+        high = nums[-1] - nums[0]  # max possible distance
+        ans = -1
+        
+        while low <= high:
+            mid = (low + high) // 2  # try this distance
+            
+            if canPlace(mid):  # if it's possible, try for larger distance
+                ans = mid
+                low = mid + 1
+            else:  # not possible → reduce distance
+                high = mid - 1
+        
+        return ans
