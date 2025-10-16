@@ -1,0 +1,45 @@
+https://takeuforward.org/plus/dsa/problems/book-allocation-problem
+
+class Solution:
+    def findPages(self, nums, m):
+        n = len(nums)
+        
+        # ❌ If there are fewer books than students, allocation not possible
+        if m > n:
+            return -1
+        
+        # ✅ Helper function to check if it's possible with given max limit
+        def isPossible(limit):
+            students = 1
+            pages_sum = 0
+            
+            for pages in nums:
+                if pages > limit:  # A single book has more pages than limit
+                    return False
+                
+                if pages_sum + pages > limit:
+                    students += 1
+                    pages_sum = pages  # start new allocation
+                    if students > m:
+                        return False
+                else:
+                    pages_sum += pages
+            
+            return True
+        
+        # 🧭 Search range: min = max(nums), max = sum(nums)
+        low, high = max(nums), sum(nums)
+        result = -1
+        
+        # 🧠 Binary Search for minimum possible max pages
+        while low <= high:
+            mid = (low + high) // 2
+            
+            if isPossible(mid):
+                result = mid
+                high = mid - 1  # try for smaller maximum
+            else:
+                low = mid + 1  # increase the limit
+        
+        return result
+ 
