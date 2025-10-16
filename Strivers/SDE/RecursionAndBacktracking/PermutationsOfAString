@@ -1,0 +1,35 @@
+https://takeuforward.org/plus/dsa/problems/permutations-of-a-string
+
+class Solution:
+    def permuteUnique(self, s: str) -> list:
+        chars = sorted(list(s))  # sort for lexicographic order
+        res = []
+        used = [False] * len(chars)
+
+        def backtrack(path):
+            # base case: when one full permutation is formed
+            if len(path) == len(chars):
+                res.append("".join(path))
+                return
+
+            for i in range(len(chars)):
+                # skip if character already used in current path
+                if used[i]:
+                    continue
+                # skip duplicates — ensure same char at same level isn’t reused
+                if i > 0 and chars[i] == chars[i - 1] and not used[i - 1]:
+                    continue
+
+                # choose
+                used[i] = True
+                path.append(chars[i])
+
+                # explore
+                backtrack(path)
+
+                # unchoose
+                path.pop()
+                used[i] = False
+
+        backtrack([])
+        return res
