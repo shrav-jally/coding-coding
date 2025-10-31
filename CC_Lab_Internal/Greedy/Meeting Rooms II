@@ -1,0 +1,16 @@
+Given meeting intervals, find the minimum number of conference rooms required.
+→ Use sorting + min heap.
+
+import heapq
+
+class Solution:
+    def minMeetingRooms(self, intervals):
+        if not intervals: return 0
+        intervals.sort()
+        h = [intervals[0][1]]
+        for s, e in intervals[1:]:
+            if s >= h[0]: heapq.heappop(h)
+            heapq.heappush(h, e)
+        return len(h)
+
+print(Solution().minMeetingRooms([[0,30],[5,10],[15,20]]))
