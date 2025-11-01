@@ -1,0 +1,16 @@
+Generate all possible subsets (the power set) of a given integer array.
+→ Use recursion/backtracking
+
+class Solution:
+    def subsets(self, nums):
+        res = []
+        def backtrack(i, path):
+            res.append(path[:])
+            for j in range(i, len(nums)):
+                path.append(nums[j])
+                backtrack(j + 1, path)
+                path.pop()
+        backtrack(0, [])
+        return res
+
+print(Solution().subsets([1,2,3]))
