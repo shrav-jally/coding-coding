@@ -1,0 +1,17 @@
+Partition a string into substrings such that every substring is a palindrome.
+→ DFS and palindrome check
+
+class Solution:
+    def partition(self, s):
+        res = []
+        def dfs(i, path):
+            if i == len(s): res.append(path[:]); return
+            for j in range(i, len(s)):
+                if s[i:j+1] == s[i:j+1][::-1]:
+                    path.append(s[i:j+1])
+                    dfs(j+1, path)
+                    path.pop()
+        dfs(0, [])
+        return res
+
+print(Solution().partition("aab"))
