@@ -1,0 +1,15 @@
+Given intervals representing balloons, find the minimum arrows needed to burst all balloons.
+→ Greedy interval merging
+
+class Solution:
+    def findMinArrowShots(self, points):
+        if not points: return 0
+        points.sort(key=lambda x: x[1])
+        arrows, pos = 1, points[0][1]
+        for s, e in points[1:]:
+            if s > pos:
+                arrows += 1
+                pos = e
+        return arrows
+
+print(Solution().findMinArrowShots([[10,16],[2,8],[1,6],[7,12]]))
