@@ -1,0 +1,12 @@
+Return the inorder traversal of a binary tree using recursion or stack.
+
+class Solution:
+    def inorderTraversal(self, root):
+        res = []
+        def dfs(n):
+            if not n: return
+            dfs(n.left)
+            res.append(n.val)
+            dfs(n.right)
+        dfs(root)
+        return res
