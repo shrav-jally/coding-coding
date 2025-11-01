@@ -10,3 +10,10 @@ class Solution:
             res.append(n.val)
         dfs(root)
         return res
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+root = TreeNode(1, None, TreeNode(2, TreeNode(3)))
+print(Solution().postorderTraversal(root))
