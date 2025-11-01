@@ -1,0 +1,18 @@
+Return all possible permutations of a list of distinct integers.
+→ Recursive backtracking
+
+class Solution:
+    def permute(self, nums):
+        res, used = [], set()
+        def backtrack(path):
+            if len(path) == len(nums):
+                res.append(path[:]); return
+            for n in nums:
+                if n in used: continue
+                used.add(n); path.append(n)
+                backtrack(path)
+                path.pop(); used.remove(n)
+        backtrack([])
+        return res
+
+print(Solution().permute([1,2,3]))
