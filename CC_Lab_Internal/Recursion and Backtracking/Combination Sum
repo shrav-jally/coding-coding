@@ -1,0 +1,17 @@
+Find all unique combinations where numbers sum to target. Each number may be reused.
+→ DFS + backtrack
+
+class Solution:
+    def combinationSum(self, candidates, target):
+        res = []
+        def dfs(i, path, rem):
+            if rem == 0: res.append(path[:]); return
+            if rem < 0: return
+            for j in range(i, len(candidates)):
+                path.append(candidates[j])
+                dfs(j, path, rem - candidates[j])
+                path.pop()
+        dfs(0, [], target)
+        return res
+
+print(Solution().combinationSum([2,3,6,7], 7))
