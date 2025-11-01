@@ -1,0 +1,13 @@
+Given an array of jump lengths, determine if you can reach the last index.
+→ Greedy track farthest reachable
+
+class Solution:
+    def canJump(self, nums):
+        reach = 0
+        for i, n in enumerate(nums):
+            if i > reach: return False
+            reach = max(reach, i + n)
+            if reach >= len(nums) - 1: return True
+        return False
+
+print(Solution().canJump([2,3,1,1,4]))
