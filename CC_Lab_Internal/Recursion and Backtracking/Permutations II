@@ -1,0 +1,19 @@
+Return all unique permutations for a list with duplicate numbers.
+→ Backtracking + set or visited array
+
+class Solution:
+    def permuteUnique(self, nums):
+        res, used = [], [False]*len(nums)
+        nums.sort()
+        def backtrack(path):
+            if len(path) == len(nums):
+                res.append(path[:]); return
+            for i in range(len(nums)):
+                if used[i] or (i > 0 and nums[i] == nums[i-1] and not used[i-1]): continue
+                used[i] = True; path.append(nums[i])
+                backtrack(path)
+                path.pop(); used[i] = False
+        backtrack([])
+        return res
+
+print(Solution().permuteUnique([1,1,2]))
