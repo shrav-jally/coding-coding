@@ -1,0 +1,18 @@
+Return all subsets for an array that may contain duplicates (no repeated subsets).
+→ Backtrack + skip duplicates
+
+class Solution:
+    def subsetsWithDup(self, nums):
+        res = []
+        nums.sort()
+        def backtrack(i, path):
+            res.append(path[:])
+            for j in range(i, len(nums)):
+                if j > i and nums[j] == nums[j-1]: continue
+                path.append(nums[j])
+                backtrack(j + 1, path)
+                path.pop()
+        backtrack(0, [])
+        return res
+
+print(Solution().subsetsWithDup([1,2,2]))
