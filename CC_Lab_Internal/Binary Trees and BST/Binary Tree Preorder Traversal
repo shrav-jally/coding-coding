@@ -1,0 +1,12 @@
+Return preorder traversal of binary tree nodes.
+
+class Solution:
+    def preorderTraversal(self, root):
+        res = []
+        def dfs(n):
+            if not n: return
+            res.append(n.val)
+            dfs(n.left)
+            dfs(n.right)
+        dfs(root)
+        return res
