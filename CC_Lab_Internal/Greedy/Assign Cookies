@@ -1,0 +1,13 @@
+Each child has a greed factor, each cookie has a size. Assign cookies to maximize the number of satisfied children.
+→ Greedy sort and assign
+
+class Solution:
+    def findContentChildren(self, g, s):
+        g.sort(); s.sort()
+        i = j = 0
+        while i < len(g) and j < len(s):
+            if s[j] >= g[i]: i += 1
+            j += 1
+        return i
+
+print(Solution().findContentChildren([1,2,3],[1,1]))
