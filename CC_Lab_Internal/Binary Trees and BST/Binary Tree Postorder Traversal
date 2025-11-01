@@ -1,0 +1,12 @@
+Return postorder traversal of binary tree nodes.
+
+class Solution:
+    def postorderTraversal(self, root):
+        res = []
+        def dfs(n):
+            if not n: return
+            dfs(n.left)
+            dfs(n.right)
+            res.append(n.val)
+        dfs(root)
+        return res
