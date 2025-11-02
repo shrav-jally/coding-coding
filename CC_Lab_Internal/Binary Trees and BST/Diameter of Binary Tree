@@ -1,1 +1,20 @@
 Return the length of the longest path between any two nodes
+
+class Solution:
+    def diameterOfBinaryTree(self, root):
+        self.max_diameter = 0
+        def get_height(node):
+            if not node: return 0
+            left_height = get_height(node.left)
+            right_height = get_height(node.right)
+            self.max_diameter = max(self.max_diameter, left_height + right_height)
+            return 1 + max(left_height, right_height)
+        get_height(root)
+        return self.max_diameter
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+root = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5)), TreeNode(3))
+print(Solution().diameterOfBinaryTree(root))
