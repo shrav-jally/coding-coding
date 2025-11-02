@@ -7,9 +7,9 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node):
-        if not node:
-            return None
+        if not node: return None
         clones = {}
+
         def dfs(n):
             if n in clones:
                 return clones[n]
