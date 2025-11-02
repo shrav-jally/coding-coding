@@ -1,0 +1,18 @@
+Check whether a binary tree follows BST properties
+
+class Solution:
+    def isValidBST(self, root):
+        def validate(node, min_val, max_val):
+            if not node:
+                return True
+            if not (min_val < node.val < max_val):
+                return False
+            return validate(node.left, min_val, node.val) and validate(node.right, node.val, max_val)
+        return validate(root, float('-inf'), float('inf'))
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+root = TreeNode(2, TreeNode(1), TreeNode(3))
+print(Solution().isValidBST(root))
