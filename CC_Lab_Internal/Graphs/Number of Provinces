@@ -5,6 +5,7 @@ class Solution:
     def findCircleNum(self, isConnected):
         n = len(isConnected)
         visited = [False] * n
+
         def dfs(city):
             visited[city] = True
             for neighbor in range(n):
