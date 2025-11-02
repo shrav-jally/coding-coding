@@ -1,0 +1,17 @@
+Check if two binary trees are identical in structure and value
+
+class Solution:
+    def isSameTree(self, p, q):
+        if not p and not q:
+            return True
+        if not p or not q or p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+p = TreeNode(1, TreeNode(2), TreeNode(3))
+q = TreeNode(1, TreeNode(2), TreeNode(3))
+print(Solution().isSameTree(p, q))
