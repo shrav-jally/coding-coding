@@ -1,0 +1,32 @@
+Return nodes visible from the right side of the tree
+
+from collections import deque
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+class Solution:
+    def rightSideView(self, root):
+        if not root: return []
+
+        results = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            for i in range(level_size):
+                node = queue.popleft()
+
+                if i == level_size - 1:
+                    results.append(node.val)
+
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+
+        return results
+
+root = TreeNode(1, TreeNode(2, None, TreeNode(5)), TreeNode(3, None, TreeNode(4)))
+print(Solution().rightSideView(root))
