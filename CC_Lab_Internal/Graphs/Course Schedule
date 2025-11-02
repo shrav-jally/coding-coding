@@ -1,0 +1,24 @@
+Given courses and prerequisites, determine if you can finish all courses.
+→ Topological sort using Kahn’s Algorithm
+
+from collections import deque, defaultdict
+
+class Solution:
+    def canFinish(self, numCourses, prerequisites):
+        adj = defaultdict(list)
+        indeg = [0]*numCourses
+        for c, p in prerequisites:
+            adj[p].append(c)
+            indeg[c] += 1
+        q = deque([i for i in range(numCourses) if indeg[i]==0])
+        taken = 0
+        while q:
+            p = q.popleft()
+            taken += 1
+            for c in adj[p]:
+                indeg[c] -= 1
+                if indeg[c]==0:
+                    q.append(c)
+        return taken == numCourses
+
+print(Solution().canFinish(2, [[1,0]]))
