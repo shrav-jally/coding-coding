@@ -1,0 +1,24 @@
+Return a possible order to finish courses given prerequisites.
+→ Topological ordering
+
+from collections import deque, defaultdict
+
+class Solution:
+    def findOrder(self, numCourses, prerequisites):
+        adj = defaultdict(list)
+        indeg = [0]*numCourses
+        for c, p in prerequisites:
+            adj[p].append(c)
+            indeg[c] += 1
+        q = deque([i for i in range(numCourses) if indeg[i]==0])
+        order = []
+        while q:
+            p = q.popleft()
+            order.append(p)
+            for c in adj[p]:
+                indeg[c] -= 1
+                if indeg[c]==0:
+                    q.append(c)
+        return order if len(order)==numCourses else []
+
+print(Solution().findOrder(4, [[1,0],[2,0],[3,1],[3,2]]))
