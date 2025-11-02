@@ -1,0 +1,21 @@
+Find the lowest common ancestor (LCA) of two nodes
+
+class Solution:
+    def lowestCommonAncestor(self, root, p, q):
+        if not root: return None
+        if root == p or root == q: return root
+        left_lca = self.lowestCommonAncestor(root.left, p, q)
+        right_lca = self.lowestCommonAncestor(root.right, p, q)
+        if left_lca and right_lca: return root
+        return left_lca or right_lca
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+root = TreeNode(3)
+root.left = TreeNode(5, TreeNode(6), TreeNode(2, TreeNode(7), TreeNode(4)))
+root.right = TreeNode(1, TreeNode(0), TreeNode(8))
+p = root.left
+q = root.left.right.right
+print(Solution().lowestCommonAncestor(root, p, q).val)
