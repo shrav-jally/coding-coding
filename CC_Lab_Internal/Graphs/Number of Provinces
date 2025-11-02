@@ -1,0 +1,21 @@
+Given adjacency matrix, count connected components (provinces).
+→ Use DFS or BFS
+
+class Solution:
+    def findCircleNum(self, isConnected):
+        n = len(isConnected)
+        visited = [False] * n
+        def dfs(city):
+            visited[city] = True
+            for neighbor in range(n):
+                if isConnected[city][neighbor] == 1 and not visited[neighbor]:
+                    dfs(neighbor)
+        count = 0
+        for i in range(n):
+            if not visited[i]:
+                count += 1
+                dfs(i)
+        return count
+
+isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+print(Solution().findCircleNum(isConnected))
