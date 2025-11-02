@@ -1,0 +1,23 @@
+Check if the tree is height-balanced (height difference ≤1)
+
+class Solution:
+    def isBalanced(self, root):
+        def check_height(node):
+            if not node: return 0
+            left_height = check_height(node.left)
+            if left_height == -1:
+                return -1
+            right_height = check_height(node.right)
+            if right_height == -1:
+                return -1
+            if abs(left_height - right_height) > 1:
+                return -1
+            return 1 + max(left_height, right_height)
+        return check_height(root) != -1
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val, self.left, self.right = val, left, right
+
+root = TreeNode(1, TreeNode(2, TreeNode(3), TreeNode(4)), TreeNode(2))
+print(Solution().isBalanced(root))
