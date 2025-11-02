@@ -1,0 +1,29 @@
+Clone a connected undirected graph where each node contains a value and list of neighbors.
+→ DFS/BFS clone map
+
+class Node:
+    def __init__(self, val=0, neighbors=None):
+        self.val, self.neighbors = val, neighbors if neighbors else []
+
+class Solution:
+    def cloneGraph(self, node):
+        if not node:
+            return None
+        clones = {}
+        def dfs(n):
+            if n in clones:
+                return clones[n]
+            copy = Node(n.val)
+            clones[n] = copy
+            for nei in n.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+        return dfs(node)
+
+n1, n2, n3, n4 = Node(1), Node(2), Node(3), Node(4)
+n1.neighbors = [n2, n4]
+n2.neighbors = [n1, n3]
+n3.neighbors = [n2, n4]
+n4.neighbors = [n1, n3]
+clone = Solution().cloneGraph(n1)
+print(clone.val, [n.val for n in clone.neighbors])
